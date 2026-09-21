@@ -1,0 +1,213 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+ \usepackage{mathtools}
+ 
+\title{ELEN4810 -- Digital Signal Processing}
+\author{David Chen}
+\date{September 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Foundations: Signals and Sequences}
+\subsection{Signals}
+A \textbf{signal} conveys information as a function over some independent variable(s). The independent variable tells us what it means for two values to be adjacent, delayed, shifted, or repeated.
+
+A \textbf{continuous-time (CT)} signal $x_c(t)$ has a continuous independent variable $t\in\mathbb{R}$ and continuous amplitudes.
+
+A \textbf{discrete-time (DT)} signal $x[n]$ has a discrete independent variable $n\in\mathbb{Z}$ and continuous or quantized amplitudes. A \textbf{digital} signal $x_q[n]$ is a special case of the DT signal where the amplitude is restricted to a discrete, finite set of levels.
+
+\subsubsection{Sampling}
+For a sampling period $T$ (sampling frequency
+\begin{equation}
+    x[n]=x_a(nT)
+\end{equation}
+
+
+% section?
+A DT system $\textit{T}$ maps an input sequence to an output sequence.
+\begin{equation}
+    y[n] = \textit{T}(x[n])
+\end{equation}
+This takes into account ALL information in the input sequence ($-\infty<n<\infty$), not necessarily just the present $n$ (i.e. a memoryless system).
+
+\subsubsection{General Moving-Average System}
+For two indices $M_1,M_2\ge0\in\mathbb{Z}$
+\begin{equation}
+    y[n] = \frac{1}{M_1+M_2+1}\sum_{k=-M_1}^{M_2}x[n-k]
+\end{equation}
+This is used to smooth out signal noise when we expect  the noise to have 0 mean.
+
+
+\section{Foundations II: LTI Systems, Convolution, System Properties, and Difference Equations}
+\subsection{Memoryless Systems}
+A system is memoryless if and only if $\forall n,$ $y[n]$ depends only on $x[n]$ at the same $n$.
+\subsubsection{The Ideal Delay System}
+\begin{equation}
+    y[n] = x[n-n_d]
+\end{equation}
+This system shifts the signal in the time domain by a fixed integer offset $n_0\in\mathbb{Z}$. $n_d>0$ shifts the signal to the right by $n_d$, $n_d<0$ shifts the signal to the left by $n_d$ (this is also called a time advance).
+
+This requires memory for all nontrivial $n_d\ne0$.
+\subsubsection{The Accumulator System}
+\begin{equation}
+    y[n]=\sum_{k=-\infty}^n x[k]
+\end{equation}
+This system accumulates (sums) all inputs at the present and past. This requires memory.
+
+\subsection{Linear Systems}
+A system is linear if and only if the following conditions hold
+\begin{enumerate}
+    \item Additivity -- $\textit{T}(x_1[n] + x_2[n]) = \textit{T}(x_1[n])+\textit{T}(x_2[n])$
+    \item Scaling/Homogeneity -- $T(ax_1[n]) = aT(a[n])$
+\end{enumerate}
+It is sufficient to prove the combined statement
+\[
+    T(ax_1[n]+bx_2[n])=aT(x_1[n])+bT(x_2[n])
+\]
+and generalize it as
+\begin{align*}
+    x[n] &= \sum_k a_k[n] \\
+    y[n] &= \sum_k a_ky_k[n]\\
+    y_k[n] &= T(x_k[n])
+\end{align*}
+   
+
+\subsubsection{The Accumulator System}
+Through evaluation of the accumulator, we can find that it is linear.
+
+\subsection{Time Invariant Systems}
+A system is time-invariant if $\forall n_0\in\mathbb{Z}$ we have $x_1[n]=x[n-n_0]$ with corresponding $y_1[n]=y[n-n_0]$. Delaying a signal, then processing it has the same result as processing a signal, then delaying it.
+
+\subsubsection{The Accumulator System}
+The accumulator system is time invariant by use of a substitution variable for evaluation.
+
+\subsubsection{The Compressor System}
+For $M\in\mathbb{Z}_+$
+\begin{align}
+    y[n]=x[Mn] &&-\infty<n<\infty
+\end{align}
+Every $M^{th}$ sample is retained, with all others being discarded.
+This system is linear, but it is not time invariant ($x[M(n-n_0)]\ne x[Mn-n_0]$).
+
+
+\subsection{Causal Systems}
+A system is causal if and only if $\forall n_0\in\mathbb{Z}, y[n_0]$ depends only on $x[n \le  n_0]$.
+
+Equivalently, given $x_1[n]=x_2[n]$ for all $n\le n_0$, a causal system has $y_1[n]=y_n2[n]$ for all $n\le n_0$.
+
+\subsubsection{Difference Systems}
+The forward difference system is
+\begin{equation}
+    y[n] = x[n+1]-x[n]
+\end{equation}
+and the backward difference system is
+\begin{equation}
+    y[n] = x[n]-x[n-1]
+\end{equation}
+
+The latter is causal, but the former is not.
+
+\subsection{BIBO Stable Systems}
+A sequence $x[n]$ is bounded if there exists a fixed, finite, positive value $B_x$ such that
+\begin{equation}
+    |x[n]|\le B_x<\infty
+\end{equation}
+
+A system is bounded-input, bounded-output stable iff every bounded input sequence produces a bounded output sequence.
+
+Existence of even a single bounded input resulting in unbounded output will disprove stability. To prove stability, we must show stability for all bounded inputs.
+
+\subsubsection{The Accumulator System}
+The accumulator is unstable, for a bounded input $x[n]=u[n]$ with bound $B_x=1$, the accumulated output is
+\[y[n] = \begin{cases*}
+n+1 &if $n\ge 0$\\
+0 & otherwise
+\end{cases*}
+\]
+which we cannot find a $B_y<\infty$ for.
+
+
+\subsection{Linear Time-Invariant Systems}
+LTI systems are both linear and time invariant. This is useful because any sequence can be written as a linear combination of delayed impulses
+$$x[n] = \sum_{k=-\infty}^\infty x[k]\delta[n-k]$$
+and for a linear system, given $h_k[k] = T[\delta[n-k]]$,
+$$y[n] = \sum_{k=-\infty}^\infty x[k]h_k[n]$$
+and if it is also time-invariant, $h_k[n] = h[n-k]$ where $h[n]=T[\delta[n]]$, so we can completely characterize an LTI system using its impulse response:
+\begin{equation}\label{eq:lti}
+       y[n] = \sum_{k=-\infty}^\infty x[k]h[n-k]
+\end{equation}
+
+\subsection{Convolution}
+Equation \ref{eq:lti} is the DT convolution sum
+\begin{equation}
+    y[n]= x[n]*h[n] =(x * h)[n] \equiv \sum_{k=-\infty}^\infty x[k]h[n-k]
+\end{equation}
+Convolution can be thought of as the superposition of scaled and shifted impulse responses, or (for a fixed $n$) as the sum of products between $x[k]$ and a flipped and shifted $h[k]$ (over all $k$). See appendix section \ref{appx:conv} for a worked example.
+
+\subsection{Properties}
+\subsubsection{Commutativity}
+The order of convolution does not matter, swapping the ``input'' and ``output'' signals will not change the result.
+\begin{equation}
+    x[n]*h[n] = h[n]*x[n]
+\end{equation}
+We can prove this relation by substituting $m=n-k$ as below
+\begin{align*}
+    x[n]*h[n] =
+    \sum_{k=-\infty}^\infty x[k]h[n-k] = 
+    \sum_{m=-\infty}^\infty x[m-n]h[m] =
+    h[n]*x[n]
+\end{align*}
+
+\subsubsection{Distributivity}
+\begin{equation}
+    x[n]*(h_1[n]+h_2[n]) = x[n]*h_1[n]+x[n]*h_2[n]
+\end{equation}
+
+\subsubsection{Associativity}
+Reordering and combining ``input'' signal and LTI systems will yield the same result.
+\begin{equation}
+    (x_1[n]*x_2[n])*x_3[n]=x_1[n]*(x_2[n]+x_3[n])
+\end{equation}
+
+\subsubsection{Impulse Response Test for BIBO Stability}
+An LTI system is BIBO stable if and only if the impulse response is absolutely summable.
+\begin{equation}
+    B_h=\sum_{k=-\infty}^\infty |h[k]|<\infty
+\end{equation}
+
+\section{Appendix}
+\subsection{Worked Example: Convolution}\label{appx:conv}
+Consider a window function (chosen for finite support)
+\begin{equation*}
+    h[n]  = [n]-u[n-N]  = \begin{cases*}
+        1 & $0\le n \le N-1$\\
+        0 & otherwise
+    \end{cases*}
+\end{equation*}
+and a decaying exponential ($a<1$) (chosen for boundedness)
+\begin{equation*}
+    x[n]  = a^nu[n] = \begin{cases*}
+        a^n & $n\ge 0$\\
+        0 & $n<0$
+    \end{cases*}
+\end{equation*}
+Visualizing this situation as a flip and shift of the window, we can better understand that
+\[x[n]*h[n]  = \begin{cases*}
+    0 & if $n<0$\\
+    \sum_{k=0}^n a^k & if $n\le N-1$\\
+    \sum_{k=n-(N-1)}^n a^k & otherwise\\
+\end{cases*}\]
+Recall that $$S_n = \sum_{k=0}^n a^k =\frac{1-a^{n+1}}{1-a} $$ and so
+\[x[n]*h[n]  = \begin{cases*}
+    0 & if $n<0$\\
+    \frac{1-a^{n+1}}{1-a} & if $n\le N-1$\\
+    a^{n-N+1}\frac{1-a^{n+1}}{1-a} & otherwise\\
+\end{cases*}\]
+
+
+\end{document}
+
