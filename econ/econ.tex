@@ -185,7 +185,8 @@ We classify goods based on the value of $\epsilon_I$ as
         \2 $0<\epsilon_I<1$ is a \textbf{necessity} good.
         \2 $1<\epsilon$ is a \textbf{luxury} good.
     \termb{Inferior Goods}\footnote{Note that inferior goods are still goods, not ``bads'', they do not bring harm.} --
-    $\epsilon_I<0$
+    $\epsilon_I<0$.
+        \2 In an $N$-good world, $N-1$ goods can be inferior, as the last good must be able to soak up additional demand (see section \ref{sec:consumer}).
     \end{outline}
 
 \subsection{Cross Price Elasticity}
@@ -213,7 +214,7 @@ We classify the relation between goods as
 		\2 A \textbf{perfectly elastic} demand curve is a horizontal line (even the slightest increase in price will cause demand to go to $0$).
 \end{outline}
 
-\section{Consumer Behavior/Preferences}
+\section{Consumer Behavior/Preferences}\label{sec:consumer}
 The fundamental neoclassical theory of consumer behavior/preferences is that
 \begin{outline}
 	\1 Companies maximize profit.
@@ -227,11 +228,24 @@ To characterize $u$, we make some assumptions about consumer preferences, namely
 	\item Transitivity -- If a consumer prefers apples to bananas, and bananas to carrots, they must also prefer apples to carrots.\footnote{Notice that whether these are substitutes or compliments depends on the situation, e.g. the fruits do not compete in a fruit salad.}
 	\item Nonsatiation -- There are ``unlimited wants,'' more is always better.
 \end{enumerate}
-and we maximize $u$ subject to the \textbf{income constraint}. We assume that
+Graphing the \textbf{total utility} ($TU$) for a given product, we find that the function is \textit{monotonically increasing} (as per the assumption of nonsatiation), but the \textbf{marginal utility} ($MU$, per-item derivative) is decreasing (but positive). This is referred to as the \textbf{Law of Diminishing Marginal Utility}, which makes it rational to purchase a diverse spread of goods instead of repeatedly buying one thing.
+
+We maximize $u$ subject to the \textbf{income constraint} that
 \[\textrm{Income} = \sum_{i=1}^N x_i P_i\]
-which excludes the possibility of saving ($\ge$) or borrowing ($\le$).
+which excludes the possibility of saving ($\ge$) or borrowing ($\le$). Under such conditions, the consumer optimum would be achieved when
+\[\frac{MU_x}{P_x}=\frac{MU_y}{P_y}\] i.e. the utility per dollar has been maximized (given a non-optimum state, the rational course of action would be to reduce $P_i$ for the $i$ with lowest marginal utility per dollar, and use the returned money to buy something with more marginal utility per dollar).
+
+\subsection{The Income and Substitution Effects}
+The \textbf{income effect} represents how much relative purchasing power the consumer will allocate to this good. The \textbf{substitution effect} represents the consumer choosing a cheaper subtitute.
+
+For most cases, this will result in a downward sloping curve. We consider a price change $\Delta P > 0$.
+\begin{outline}
+	\1 For a normal good, the consumer has less relative purchasing power AND they would rather buy something cheaper, so $\Delta Q < 0$ and the demand curve is downward sloping as expected.
+	\1 For an inferior good, the income effect actually suggests an increase in demand, but the substitution effect usually wins out.
+	    \2 In the rare case that the substitution effect does not win out, the good is called a \textbf{Giffen Good} experiencing the \textbf{Giffen Paradox}. All Giffen goods are inferior.
+\end{outline}
+
 \iffalse
-\section{Behavioral Economics}
 \section{Theory of the Firm}
 \section{Competitive Markets}
 \section{Competitive Markets II}
