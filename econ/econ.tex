@@ -12,6 +12,8 @@
 
 \def\term #1{\termb{#1} --}
 \def\termb #1{\1 \textbf{#1}}
+\def\termB #1{\termbB{#1} --}
+\def\termbB #1{\2 \textbf{#1}}
 
 \begin{document}
 
@@ -244,6 +246,48 @@ For most cases, this will result in a downward sloping curve. We consider a pric
 	\1 For an inferior good, the income effect actually suggests an increase in demand, but the substitution effect usually wins out.
 	    \2 In the rare case that the substitution effect does not win out, the good is called a \textbf{Giffen Good} experiencing the \textbf{Giffen Paradox}. All Giffen goods are inferior.
 \end{outline}
+
+\section{Behavioral Economics}
+Behavioral Economics replaces the rigid assumptions of neoclassical economics' rationality to account for irrational and impulsive human behavior.
+Consumers are modelled as \textbf{satisficers}, agents that are not perfectly rational and instead have
+\begin{outline}
+    \1 unstable, context-dependent preferences
+    \1 lazy and unwilling to make complex calculations, preferring low-cost \textbf{heuristics}
+    \1 \textbf{cognitive biases} -- the patterns in which humans make systematic errors, even when pointed out
+    \2 \textbf{confirmation bias} -- priority of information that agrees with existing preconceptions
+    \2 \textbf{self-serving bias} -- tendency to attribute successes to effort and failures to external factors
+    \termbB{overconfidence effect}
+    \termB{hindsight effect} assumption that the past was more predictable than it was
+    \termB{availability heuristic} basing (price) projections off of past memories
+    \termB{planning fallacy} underestimation of the time to do a thing
+    \termB{framing effect} ability for preferences to be drastically changed based on the context a situation is presented in. This is the crux of advertising.
+    \2 \textbf{myopia}, placing insufficient weight on future benefits
+    \3 \textbf{Hyperbolic Discounting} refers to the discounting of future rewards in favor of  ahsorter wait.
+    \3 This is related to \textbf{time inconsistency}, a systematic misjudgment of future preferences (like dieting or saving), which can be counteracted using \textbf{commitment devices}.
+    \1 surmountable willpower, susceptibility to temptation
+    \1 generosity and selflessness
+    \1 an interest in fairness
+\end{outline}
+
+\subsection{Prospect Theory}
+Prospect Theory introduces a ``bad'' to the system, with corresponding \textit{diminishing marginal disutility}. There is a \textit{reference dependence} relative to the status quo, leading to \textit{loss aversion} where any decline from the status quo is weighted more heavily.
+The value function in prospect theory takes a form resembling $\arctan{x}$, but instead of being symmetric, the negative (loss) side is steeper.
+\begin{itemize}
+	\item Shrinkflation is common because a price increase is registered as a ``loss,'' but a quantity decrease is less noticed.
+	\item \textbf{Endowment Effect} -- People feel more attached to property they already own, as it is part of the status quo.
+\end{itemize}
+
+\subsection{Fairness and Self-Interest}
+Fairness is a judgment about whether a situation is morally/ethically acceptable. This is why people donate to charity or fix prices in disasters.
+
+\subsubsection{Games}
+Studies employ games to observe human behavior. Given real money, we consider
+\begin{itemize}
+	\item The \textbf{Dictator Game}, where 2 anonymous individuals interact, one is randomly chosen to split \$1000 without fear of reprisal, with $\frac{2}{3}$ of  dictators choosing to split, $17\%$ giving half, and over $5\%$ giving all to the powerless player.
+	\item The \textbf{Ultimatum Game}, where 1 player is randomly chosen to propose a split and the second must agree or nobody gets money. Usually, the proposer takes care to be respectful of the other player.
+\end{itemize}
+
+In the case of games likethe Dictator Game
 
 \iffalse
 \section{Theory of the Firm}
