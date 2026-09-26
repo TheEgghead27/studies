@@ -1,8 +1,10 @@
 \documentclass{article}
+\usepackage[letter, total={7in,9.5in}]{geometry}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{outlines}
 \usepackage{amsmath}
 \usepackage{tablefootnote}
+\usepackage{multirow}
 
 \title{ECON1105}
 \author{David Chen}
@@ -136,23 +138,99 @@ When a tax is levied on a good, the resultant $Q_t<Q^*$ (either from a shift in 
 In general, tax burden is \textit{shared} among consumer and producer. The collection of the tax is logistically cheaper when taken from the producer.
 
 \section{Elasticity}
-The \textbf{elasticity} (at a specific point $(P,Q)$) is the
+\subsection{Own Price Elasticity of Demand}
+The (own) price elasticity of demand (at a specific point $(P,Q)$) is the
 $$\epsilon = \frac{\%\Delta Q}{\%\Delta P} = \frac{\frac{\Delta Q}{Q}}{\frac{\Delta P}{P}} = \frac{\Delta Q}{Q}\frac{P}{\Delta Q} = \frac{\Delta Q}{\Delta P} \frac{P}{Q}$$
 The final form shows that the inverse slope on a Q/P graph can be used to evaluate elasticity. Note that some textbooks report only the absolute value of $\epsilon<0$, we include the negative sign in this course.
 
 From geometry, an alternative formula for the elasticity at point $(P,Q)$ on a linear demand curve with Q-intercept $I$ is \[\epsilon = \frac{I-Q}{Q}\]
 
+The \textbf{Midpoint Formula} form of elasticity is
+\[\epsilon = \frac{\frac{\Delta Q}{\frac{Q_1+Q_2}{2}}}{\frac{\Delta P}{\frac{P_1+P_2}{2}}}\]
 For a linear demand curve, elasticity decreases as the quantity sold increases (we move down the demand curve).
 
-Demand for a good can be quantified as
+Demand for a good and its relationship to \textbf{total revenue} ($TR=P\cdot Q$) is summarized in table \ref{tab:3.1}.
+Plotting the total revenue on the Q-axis of a linear demand curve yields a parabola\footnote{The total revenue parabola is symmetric, but the total cost of production will monotonically increase. Thus, to maximize profit $\Pi = TR-TC$, firms remain on the left side of the curve, or most optimally, the midpoint.} with maximal revenue at $\epsilon=1$. For prices left of (lower) than the vertex, there is elastic demand: a price cut (hike) increases (decreases) revenue, and to the right the inverse is true.
+
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{c|c|c|c}
+    $\epsilon$                        & P                                                  & Q                                                  & TR                        \\ \hline
+    \multirow{2}{*}{$<1$ (inelastic)} & $\uparrow\uparrow$     & $\downarrow$           & $\uparrow$   \\ \cline{2-4}
+                                      & $\downarrow\downarrow$ & $\uparrow$             & $\downarrow$ \\ \hline
+    \multirow{2}{*}{$>1$ (elastic)}   & $\uparrow$             & $\downarrow\downarrow$ & $\downarrow$ \\ \cline{2-4}
+                                      & $\downarrow$           & $\uparrow\uparrow$     & $\uparrow$   \\ \hline
+    $=1$ (unit[ary])                  & -                      & -                      & Maximized
+    \end{tabular}
+    \caption{Summary of Elasticity's Relation to Supply/Demand/Total Revenue}
+    \label{tab:3.1}
+\end{table}
+
+The price elasticity of demand depends on factors such as the
 \begin{outline}
-    \term{Inelastic} $|\epsilon|<1$
-    \term{Elastic} $|\epsilon|>1$
-    \term{Unit(ary) Elastic} $|\epsilon|=1$
+	\1 Availability of close substitutes.
+	\1 Time to adjust to substitutes -- as consumers have more time to churn to cheaper options, they will do so.
+	\1 Proportion of consumer budget allocated to the item -- e.g. shoelaces are a minor and trivial expense
 \end{outline}
 
+\subsection{Income Elasticity}
+The income elasticity considers the change in demand relative to income.
+\[
+    \epsilon_I = \frac{\%\Delta Q_D}{\%\Delta INC}
+\]
+We classify goods based on the value of $\epsilon_I$ as
+\begin{outline}
+    \term{Normal Goods} $0<\epsilon_I$.
+
+        \2 $0<\epsilon_I<1$ is a \textbf{necessity} good.
+        \2 $1<\epsilon$ is a \textbf{luxury} good.
+    \termb{Inferior Goods}\footnote{Note that inferior goods are still goods, not ``bads'', they do not bring harm.} --
+    $\epsilon_I<0$
+    \end{outline}
+
+\subsection{Cross Price Elasticity}
+The cross price elasticity compares the change in quantity demanded for $Y$ relative to the price of another good $X$.
+
+\[
+    CPE = \frac{\%\Delta Q_D^Y}{\%\Delta P^x}
+\]
+We classify the relation between goods as
+\begin{outline}
+	\term{Compliments} $CPE<0$
+	\term{Substitutes} $CPE>0$
+\end{outline}
+
+\subsection{Applications}
+\begin{outline}
+	\1 The existence of substitutes is often raised as coutner-evidence to accusations of monopoly.
+	\1 The provision of food aid, while artificially moving the supply curve rightward (increasing), decreases total revenue for domestic firms, disincentivising production.
+	    \2 The terms of trade for agricultural producs are also unfavorable for developing countries, as the elasticity of demand for food products means investing in increasing production may not meaningfully increase revenues.
+	\1 Tax disincentives:
+	    \2 A tax on something with inelastic demand like cigarettes (i.e. a \textbf{sin tax}) is not going to effectively reduce the sin, but will raise substantial tax revenue (mostly consumer burden) without humongous dead-weight loss.
+	    \2 A tax on something with elastic demand like blue shirts will severely pervert incentives, resulting in a massive dead weight loss and producer burden (but the tax burden is still \textit{shared} with consumers).
+	\1 Perfect Cases:
+	    \2 A \textbf{perfectly inelastic} demand curve is a vertical line (no matter what price, that amount of product will be bought).
+		\2 A \textbf{perfectly elastic} demand curve is a horizontal line (even the slightest increase in price will cause demand to go to $0$).
+\end{outline}
+
+\section{Consumer Behavior/Preferences}
+The fundamental neoclassical theory of consumer behavior/preferences is that
+\begin{outline}
+	\1 Companies maximize profit.
+	\1 Consumers maximize happiness.
+	    \2 We assume that there are cardinal (countable) units of happiness called \textbf{utils}.
+	    \2 The utility function takes the form of $u=f(x_1,x_2,...)$, where each $x_i$ is the quantity of a good or service to buy.
+\end{outline}
+To characterize $u$, we make some assumptions about consumer preferences, namely that
+\begin{enumerate}
+	\item Completeness -- A consumer can always make a choice
+	\item Transitivity -- If a consumer prefers apples to bananas, and bananas to carrots, they must also prefer apples to carrots.\footnote{Notice that whether these are substitutes or compliments depends on the situation, e.g. the fruits do not compete in a fruit salad.}
+	\item Nonsatiation -- There are ``unlimited wants,'' more is always better.
+\end{enumerate}
+and we maximize $u$ subject to the \textbf{income constraint}. We assume that
+\[\textrm{Income} = \sum_{i=1}^N x_i P_i\]
+which excludes the possibility of saving ($\ge$) or borrowing ($\le$).
 \iffalse
-\section{Consumer Behavior I}
 \section{Behavioral Economics}
 \section{Theory of the Firm}
 \section{Competitive Markets}
