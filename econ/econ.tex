@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{outlines}
+\usepackage{amsmath}
+\usepackage{tablefootnote}
+
+\title{ECON1105}
+\author{David Chen}
+\date{September 2026}
+
+\def\term #1{\termb{#1} --}
+\def\termb #1{\1 \textbf{#1}}
+
+\begin{document}
+
+\maketitle
+
+\section{Supply and Demand I}
+\begin{outline}
+    \term{Production Possibility Frontier (PPF)}
+        curve representing maximum productivity (the downwards slope indicates a \textit{trade-off} between multiple outputs). Points beneath the curve can increase production without trade-offs (inefficiencies, underemployment), points above the curve are not feasible (yet).
+        \2 The first-derivative of the PPF (``slope of tangent line'') represents the \textbf{opportunity cost} per additional item on the X-axis. In the lecture example, we had guns vs roses.
+        \2 The ideal point to be on the PPF depends on consumer preferences.
+        \2 Considering a PPF between consumption goods (for immediate use) and capital goods (for future use), the choice of point on the PPF influences future PPFs (more capital $\implies$ more production possibility).
+
+    \term{Consumption Possibility Frontier (CPF)}
+        demand-side analog to the PPF, CPF = PPF assuming no external trade.
+    \term{Law of Demand}
+        there exists an inverse (negative) relationship between price and quantity demanded.
+        \2 The point at which the demand curve intersects the price-axis\footnote{Due to the convention set by Alfred Marshall, price is usually on the y-axis despite the fact we more often use price as the independent variable.} ($Q_D=0$) is the \textbf{choke price of demand}.
+        \2 We approximate supply curves as ramp functions going up along the price-axis until the choke price.
+    \term{Law of Demand}
+        there exists a direct (positive) relationship between price and quantity supplied.
+        \2 The point at which the supply curve intersects the price-axis ($Q_S=0$) is the \textbf{choke price of supply} as determined by production costs.
+        \2 We approximate demand curves as reverse ramp functions going down along the price-axis until the choke price.
+    \term{Equilibrium} The \textbf{equilibrium price} and \textbf{equilibrium quantity} are the stable-state\footnote{In intermediate microeconomics, the notion of unstable equilibria is introduced.} values $(P^*, Q*)$ at the intersection of supply and demand curves.
+        \2 Given $P_{High} > P^*$, $Q_S>Q_D$, a \textbf{surplus}.
+        \2 Given $P_{Low} < P^*$, $Q_D>Q_S$, a \textbf{shortage}.
+        \3 In both of these cases, the \textbf{price mechanism} will naturally cause the price to tend towards $P^*$, e.g. if the original supplier offers concert tickets at $P_L$, a secondary market will emerge.
+        \2 When the equilibrium point lies on the price-axis (e.g. choke price of supply $>$ choke price of demand), the product is not produced. (Example: consumer jetpacks, flying cars, nuclear missile-launching watch)
+        \2 When the equilibrium point for a good lies on the supply-axis (e.g. $P^*=0)$, that good is considered a \textbf{free good} like air.
+\end{outline}
+In short, the \textbf{market} decides \textit{what} is produced and how \textit{much} to produce. This can change based on additional factors like technology and taste (see equations \ref{eq:1.1} and \ref{eq:1.2}).
+
+We can model the demand function using the variables in Table \ref{tab:1.1} as a multivariate function, where a demand curve holds all other variables save $P$ constant.
+\begin{equation}\label{eq:1.1}
+    \textrm{Demand} = f(P,P^e, Y_D, TP, P^R, \#, |T)
+\end{equation}
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{c|c|c}
+         Variable & Name & Impact on $f$ \\
+         \hline
+         $P$ & Price & -\\
+         $P^e$ & (Future) Price Expectation & +\tablefootnote{A predicted higher price in the future increases demand now.}\\
+         $Y_D$ & Disposable Income & +/-\tablefootnote{For \textbf{normal goods}, demand increases with income, but for $\textbf{inferior goods}$, the inverse is true.}\\
+         $TP$ & Taste and Preferences & +/-\\
+         $P^R$ & Price of Related Products & +/-\tablefootnote{An increase in price of complimentary goods may reduce demand, while an increase in price of substitutes may increase demand.} \\
+         $\#$ & Size of Market & +\\
+         $T$ & Taxes & -\\
+    \end{tabular}
+    \caption{Variables for Equation \ref{eq:1.1} and their impact on the demand curve.}
+    \label{tab:1.1}
+\end{table}
+\\The economics student must be careful to distinguish between $\Delta Q_D$, a change in $P$ resulting in movement \textit{along} the demand curve and $\Delta D$, a shift in the demand curve\tablefootnote{rightward for increasing demand, leftward for decreasing} due to a change in the other factors.
+We can model the supply curve analogously using the variables in Table \ref{tab:1.2}.
+\begin{equation}\label{eq:1.2}
+    \textrm{Supply} = f(P,FP, TE, P^e, \#, |T)
+\end{equation}
+
+\begin{table}
+    \centering
+    \begin{tabular}{c|c}
+        Variable & Name \\
+        \hline
+        $P$ & Price \\
+         $FP$& Factor Prices \\
+         $TE$& Technology\\
+         $P^e$&Price Expectations\\
+         $\#$&Number of Sellers\\
+         $T$&Taxes
+    \end{tabular}
+    \caption{Caption}
+    \caption{Variables for Equation \ref{eq:1.2}. Impact on the demand curve are left as an exercise to the reader.}
+    \label{tab:1.2}
+\end{table}
+
+In this course, we will engage in \textbf{comparative statics}, where we start at the equilibrium point and consider how the events will shift the demand curve.
+
+\section{Supply and Demand II}
+A \textit{change in demand/supply} is a shift in the demand/supply curve. We study economics \textbf{statics}, how the system changed between start and end, instead of \textbf{dynamics}, the time evolution of the system.
+We summarize the effects of changes in demand/supply on the equilibrium price and quantity in table \ref{tab:2.1}.
+
+\begin{table}[hb]
+    \centering
+    \begin{tabular}{c|c|c}
+         Change & $P$ & $Q$ \\
+         \hline
+         $S +$ & $-$ & $+$ \\
+         $S -$ & $+$ &  $-$ \\
+         $D +$ & $+$ & $+$ \\
+         $D -$ & $-$ &  $-$ \\
+         $D + S +$ & ? & $+$ \\
+         $D - S -$ & ? & $-$ \\
+         $D + S -$ & $+$ & ? \\
+         $D - S +$ & $-$ & ? \\
+    \end{tabular}
+    \caption{Summary of Effects of Shifts in Supply/Demand on $P$ and $Q$}
+    \label{tab:2.1}
+\end{table}
+
+\begin{outline}
+    \term{Price Ceiling}
+    a (government-)imposed maximum price on a good.
+    \2 If the ceiling is above the market price, it is a non-binding constraint.
+    \2 If the ceiling is below the market price, a shortage will result due to decreased supply and increased demand. Some people may benefit from the artificially lowered price, but there will also emerge a black market where a higher equilibrium price emerges, changing the quantity demanded.
+    \term{Price Floor}
+    a (government-)imposed minimum price on a good.
+    \2 Taking the labor market for example, a higher minimum wage will lead to layoffs of low-value workers (for a firm will only hire employees worth more to them than the salary demanded). There will be a surplus of labor (unemployment). Removing the minimum wage allows for movement down the supply curve (less job-seekers, more people occupied in education or whatnot) and up the demand curve (hiring more people).
+    \termb{Consumer Surplus}
+    $= \int_0^{Q^*} \left(D(Q) - P^*\right) \,dQ$, the area under the demand curve and above the equilibrium price. This represents how much more some consumers \textit{would} have paid, but do not have to in this market.
+    \termb{Producer Surplus}
+    $= \int_0^{Q^*} \left(P^*-S(Q)\right) \,dQ$, the area above the demand curve and below the equilibrium price. This represents how much less some producers \textit{would} have sold their product at, but do not have to in this market.
+    \2 An auction, or any other manner of (perfect) price discrimination minimizes consumer surplus.
+    \termb{Allocative Efficiency} $= \textrm{Consumer Surplus} + \textrm{Producer Surplus}$
+    \term{Gross Price $P^g$} The money a consumer pays for a good including taxes.
+    \term{Net Price $P^n$} The money a producer receives for a good after taxes.
+\end{outline}
+
+\subsection{Taxation}
+When a tax is levied on a good, the resultant $Q_t<Q^*$ (either from a shift in supply from taxing the producer, or a shift in demand from taxing the consumer). Taxation on an economic activity \textit{decreases} economic activity. There is less consumer surplus and less producer surplus due to the introduction of a \textbf{government surplus (tax revenue)} $=\int_0^{Q_t}\left(P^{g}(Q)-P^{n}(Q)\right)\,dt$ and a \textbf{dead weight loss} (the gap between the original S/D curves over $Q_t$ and $Q^*$).
+\begin{outline}
+    \termb{Total (Societal) Surplus} $=\textrm{Consumer Surplus} + \textrm{Government Surplus} + \textrm{Producer Surplus}$
+    \term{Tax Incidence} The set of entities that a tax burden (mostly) falls on.
+\end{outline}
+In general, tax burden is \textit{shared} among consumer and producer. The collection of the tax is logistically cheaper when taken from the producer.
+
+\section{Elasticity}
+The \textbf{elasticity} (at a specific point $(P,Q)$) is the
+$$\epsilon = \frac{\%\Delta Q}{\%\Delta P} = \frac{\frac{\Delta Q}{Q}}{\frac{\Delta P}{P}} = \frac{\Delta Q}{Q}\frac{P}{\Delta Q} = \frac{\Delta Q}{\Delta P} \frac{P}{Q}$$
+The final form shows that the inverse slope on a Q/P graph can be used to evaluate elasticity. Note that some textbooks report only the absolute value of $\epsilon<0$, we include the negative sign in this course.
+
+From geometry, an alternative formula for the elasticity at point $(P,Q)$ on a linear demand curve with Q-intercept $I$ is \[\epsilon = \frac{I-Q}{Q}\]
+
+For a linear demand curve, elasticity decreases as the quantity sold increases (we move down the demand curve).
+
+Demand for a good can be quantified as
+\begin{outline}
+    \term{Inelastic} $|\epsilon|<1$
+    \term{Elastic} $|\epsilon|>1$
+    \term{Unit(ary) Elastic} $|\epsilon|=1$
+\end{outline}
+
+\iffalse
+\section{Consumer Behavior I}
+\section{Behavioral Economics}
+\section{Theory of the Firm}
+\section{Competitive Markets}
+\section{Competitive Markets II}
+\section{Market Failures: Monopoly}
+\section{Factor Markets}
+\section{Market Failures: Imperfect Competition II}
+\section{Market Failures: Externalities \& Public Goods}
+\section{Strategic Behavior/Game Theory}
+\section{International Trade}
+\section{Microeconomics in Action}
+\section{Intro to Macro/GDP Accounting/Immigration}
+\section{Employment and Inflation/Macro History}
+\section{GDP Accounting/Price Indices}
+\section{Economic Growth}
+\section{Capital Markets}
+\section{Financial Statements}
+\section{Short Run Income Determination}
+\section{Fiscal Policy}
+\section{Equilibrium Algebra/Problem Solving}
+\section{Money and Banking}
+\section{Money Creation}
+\section{FED and Monetary Policy}
+\section{Aggregate Supply and Demand}
+\section{Aggregate Demand/Aggregate Supply}
+\section{International Finance}
+\section{Macro Topics}
+\section{Equity and Efficiency}
+\fi
+
+\end{document}
