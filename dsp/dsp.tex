@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
  \usepackage{mathtools}
- 
+
 \title{ELEN4810 -- Digital Signal Processing}
 \author{David Chen}
 \date{September 2026}
@@ -42,7 +42,8 @@ For two indices $M_1,M_2\ge0\in\mathbb{Z}$
 This is used to smooth out signal noise when we expect  the noise to have 0 mean.
 
 
-\section{Foundations II: LTI Systems, Convolution, System Properties, and Difference Equations}
+\AddToHook{cmd/section/before}{\clearpage}
+\section{Foundations II: LTI Systems, Convolution, System Properties}
 \subsection{Memoryless Systems}
 A system is memoryless if and only if $\forall n,$ $y[n]$ depends only on $x[n]$ at the same $n$.
 \subsubsection{The Ideal Delay System}
@@ -74,7 +75,7 @@ and generalize it as
     y[n] &= \sum_k a_ky_k[n]\\
     y_k[n] &= T(x_k[n])
 \end{align*}
-   
+
 
 \subsubsection{The Accumulator System}
 Through evaluation of the accumulator, we can find that it is linear.
@@ -157,7 +158,7 @@ The order of convolution does not matter, swapping the ``input'' and ``output'' 
 We can prove this relation by substituting $m=n-k$ as below
 \begin{align*}
     x[n]*h[n] =
-    \sum_{k=-\infty}^\infty x[k]h[n-k] = 
+    \sum_{k=-\infty}^\infty x[k]h[n-k] =
     \sum_{m=-\infty}^\infty x[m-n]h[m] =
     h[n]*x[n]
 \end{align*}
@@ -178,6 +179,22 @@ An LTI system is BIBO stable if and only if the impulse response is absolutely s
 \begin{equation}
     B_h=\sum_{k=-\infty}^\infty |h[k]|<\infty
 \end{equation}
+
+\section{Difference Equations, Fourier representations, and the DTFT}
+
+\iffalse
+
+\section{Sampling, reconstruction, and rate conversion}
+\section{The DFT and circular convolution}
+\section{FFTs, windows, and spectral leakage}
+\section{Short-time Fourier analysis}
+\section{The z-transform and region of convergence}
+\section{Poles, zeros, and LTI system behavior}
+\section{FIR filter design
+\section{IIR filter design}
+\section{DSP design workflow and synthesis}
+
+\fi
 
 \section{Appendix}
 \subsection{Worked Example: Convolution}\label{appx:conv}
@@ -210,4 +227,3 @@ Recall that $$S_n = \sum_{k=0}^n a^k =\frac{1-a^{n+1}}{1-a} $$ and so
 
 
 \end{document}
-
