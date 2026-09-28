@@ -8,7 +8,7 @@
 
 \title{ECON1105}
 \author{David Chen}
-\date{September 2026}
+\date{Fall 2026}
 
 \def\term #1{\termb{#1} --}
 \def\termb #1{\1 \textbf{#1}}
@@ -33,7 +33,7 @@
         there exists an inverse (negative) relationship between price and quantity demanded.
         \2 The point at which the demand curve intersects the price-axis\footnote{Due to the convention set by Alfred Marshall, price is usually on the y-axis despite the fact we more often use price as the independent variable.} ($Q_D=0$) is the \textbf{choke price of demand}.
         \2 We approximate supply curves as ramp functions going up along the price-axis until the choke price.
-    \term{Law of Demand}
+    \term{Law of Supply}
         there exists a direct (positive) relationship between price and quantity supplied.
         \2 The point at which the supply curve intersects the price-axis ($Q_S=0$) is the \textbf{choke price of supply} as determined by production costs.
         \2 We approximate demand curves as reverse ramp functions going down along the price-axis until the choke price.
@@ -50,7 +50,7 @@ We can model the demand function using the variables in Table \ref{tab:1.1} as a
 \begin{equation}\label{eq:1.1}
     \textrm{Demand} = f(P,P^e, Y_D, TP, P^R, \#, |T)
 \end{equation}
-\begin{table}[hb]
+\begin{table}
     \centering
     \begin{tabular}{c|c|c}
          Variable & Name & Impact on $f$ \\
@@ -74,23 +74,23 @@ We can model the supply curve analogously using the variables in Table \ref{tab:
 
 \begin{table}
     \centering
-    \begin{tabular}{c|c}
-        Variable & Name \\
+    \begin{tabular}{c|c|c}
+        Variable & Name & Impact on $f$ \\
         \hline
-        $P$ & Price \\
-         $FP$& Factor Prices \\
-         $TE$& Technology\\
-         $P^e$&Price Expectations\\
-         $\#$&Number of Sellers\\
-         $T$&Taxes
+        $P$ & Price& + \\
+         $FP$& Factor Prices & - \\
+         $TE$& Technology & +\\
+         $P^e$&Price Expectations & -\\
+         $\#$&Number of Sellers & + \\
+         $T$&Taxes & -
     \end{tabular}
-    \caption{Caption}
-    \caption{Variables for Equation \ref{eq:1.2}. Impact on the demand curve are left as an exercise to the reader.}
+    \caption{Variables for Equation \ref{eq:1.2} and their impact on the demand curve.}
     \label{tab:1.2}
 \end{table}
+In this course, we will engage in \textbf{comparative statics}, where we start at the equilibrium point and consider how an event will shift the demand curve (holding all else constant, i.e. ``\textbf{ceteris paribus}'').
 
-In this course, we will engage in \textbf{comparative statics}, where we start at the equilibrium point and consider how the events will shift the demand curve.
 
+\AddToHook{cmd/section/before}{\clearpage}
 \section{Supply and Demand II}
 A \textit{change in demand/supply} is a shift in the demand/supply curve. We study economics \textbf{statics}, how the system changed between start and end, instead of \textbf{dynamics}, the time evolution of the system.
 We summarize the effects of changes in demand/supply on the equilibrium price and quantity in table \ref{tab:2.1}.
@@ -132,16 +132,25 @@ We summarize the effects of changes in demand/supply on the equilibrium price an
 \end{outline}
 
 \subsection{Taxation}
-When a tax is levied on a good, the resultant $Q_t<Q^*$ (either from a shift in supply from taxing the producer, or a shift in demand from taxing the consumer). Taxation on an economic activity \textit{decreases} economic activity. There is less consumer surplus and less producer surplus due to the introduction of a \textbf{government surplus (tax revenue)} $=\int_0^{Q_t}\left(P^{g}(Q)-P^{n}(Q)\right)\,dt$ and a \textbf{dead weight loss} (the gap between the original S/D curves over $Q_t$ and $Q^*$).
+When a tax is levied on a good, the resultant $Q_t<Q^*$ (either from a shift in supply from taxing the producer, or a shift in demand from taxing the consumer). Taxation on an economic activity \textit{decreases} economic activity. A \textbf{lump-sum} (constant-value) tax is easiest to calculate, but a \textbf{percentage tax} is more common (and would increase the slope of the supply curve). There is less consumer surplus and less producer surplus due to the introduction of a \textbf{government surplus (tax revenue)} $=\int_0^{Q_t}\left(P^{g}(Q)-P^{n}(Q)\right)\,dt$ and a \textbf{dead weight loss} (the gap between the original S/D curves over $Q_t$ and $Q^*$).
 \begin{outline}
     \termb{Total (Societal) Surplus} $=\textrm{Consumer Surplus} + \textrm{Government Surplus} + \textrm{Producer Surplus}$
     \term{Tax Incidence} The set of entities that a tax burden (mostly) falls on.
+    \2 For highly inelastic demand, the tax incidence is mostly on the consumer. For highly elastic demand, the tax incidence is mostly on the producer.
 \end{outline}
 In general, tax burden is \textit{shared} among consumer and producer. The collection of the tax is logistically cheaper when taken from the producer.
 
+\textbf{Government interventions} like the above, or the government itself entering the market as producer/consumer is for the purpose of
+\begin{itemize}
+    \item Raising revenues
+    \item Controlling externalities (positives like education, negatives like pollution)
+    \item Fairness (controlling market power among monopolies, maintaining essential goods/services)
+    \item Protecting national security/domestic industry
+\end{itemize}
+
 \section{Elasticity}
 \subsection{Own Price Elasticity of Demand}
-The (own) price elasticity of demand (at a specific point $(P,Q)$) is the
+The (own) price elasticity of demand (at a specific point $(P,Q)$) is the unitless value
 $$\epsilon = \frac{\%\Delta Q}{\%\Delta P} = \frac{\frac{\Delta Q}{Q}}{\frac{\Delta P}{P}} = \frac{\Delta Q}{Q}\frac{P}{\Delta Q} = \frac{\Delta Q}{\Delta P} \frac{P}{Q}$$
 The final form shows that the inverse slope on a Q/P graph can be used to evaluate elasticity. Note that some textbooks report only the absolute value of $\epsilon<0$, we include the negative sign in this course.
 
@@ -152,7 +161,7 @@ The \textbf{Midpoint Formula} form of elasticity is
 For a linear demand curve, elasticity decreases as the quantity sold increases (we move down the demand curve).
 
 Demand for a good and its relationship to \textbf{total revenue} ($TR=P\cdot Q$) is summarized in table \ref{tab:3.1}.
-Plotting the total revenue on the Q-axis of a linear demand curve yields a parabola\footnote{The total revenue parabola is symmetric, but the total cost of production will monotonically increase. Thus, to maximize profit $\Pi = TR-TC$, firms remain on the left side of the curve, or most optimally, the midpoint.} with maximal revenue at $\epsilon=1$. For prices left of (lower) than the vertex, there is elastic demand: a price cut (hike) increases (decreases) revenue, and to the right the inverse is true.
+Plotting the total revenue on the Q-axis of a linear demand curve yields a parabola\footnote{The total revenue parabola is symmetric, but the total cost of production will monotonically increase. Thus, to maximize profit $\Pi = TR-TC$, firms remain on the left (elastic) side of the curve, or most optimally, the midpoint.} with maximal revenue at $\epsilon=1$. For prices left of (lower) than the vertex, there is elastic demand: a price cut (hike) increases (decreases) revenue, and to the right the inverse is true.
 
 \begin{table}[hb]
     \centering
@@ -200,6 +209,7 @@ The cross price elasticity compares the change in quantity demanded for $Y$ rela
 We classify the relation between goods as
 \begin{outline}
 	\term{Compliments} $CPE<0$
+	\term{Unrelated} $CPE=0$
 	\term{Substitutes} $CPE>0$
 \end{outline}
 
@@ -221,7 +231,7 @@ The fundamental neoclassical theory of consumer behavior/preferences is that
 \begin{outline}
 	\1 Companies maximize profit.
 	\1 Consumers maximize happiness.
-	    \2 We assume that there are cardinal (countable) units of happiness called \textbf{utils}.
+	    \2 We assume that there are cardinal\footnote{Ordinal measures allow for comparison of things to be \textit{better than} or \textit{equal to} another, cardinal measures are ordinal measures that also include an absolute magnitude. Ordinal measures are more common in reality.} units of happiness called \textbf{utils}.
 	    \2 The utility function takes the form of $u=f(x_1,x_2,...)$, where each $x_i$ is the quantity of a good or service to buy.
 \end{outline}
 To characterize $u$, we make some assumptions about consumer preferences, namely that
@@ -235,7 +245,12 @@ Graphing the \textbf{total utility} ($TU$) for a given product, we find that the
 We maximize $u$ subject to the \textbf{income constraint} that
 \[\textrm{Income} = \sum_{i=1}^N x_i P_i\]
 which excludes the possibility of saving ($\ge$) or borrowing ($\le$). Under such conditions, the consumer optimum would be achieved when
-\[\frac{MU_x}{P_x}=\frac{MU_y}{P_y}\] i.e. the utility per dollar has been maximized (given a non-optimum state, the rational course of action would be to reduce $P_i$ for the $i$ with lowest marginal utility per dollar, and use the returned money to buy something with more marginal utility per dollar).
+\begin{align*}
+    \frac{MU_x}{P_x}=\frac{MU_y}{P_y} &&
+    \frac{MU_x}{MU_y}=\frac{P_x}{P_y}
+\end{align*}
+i.e. the utility per dollar has been maximized (given a non-optimum state, the rational course of action would be to reduce
+$P_i$ for the $i$ with lowest marginal utility per dollar, and use the returned money to buy something with more marginal utility per dollar).
 
 \subsection{The Income and Substitution Effects}
 The \textbf{income effect} represents how much relative purchasing power the consumer will allocate to this good. The \textbf{substitution effect} represents the consumer choosing a cheaper subtitute.
