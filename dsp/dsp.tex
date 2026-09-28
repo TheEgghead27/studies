@@ -151,9 +151,35 @@ Equation \ref{eq:lti} is the DT convolution sum
 \begin{equation}
     y[n]= x[n]*h[n] =(x * h)[n] \equiv \sum_{k=-\infty}^\infty x[k]h[n-k]
 \end{equation}
-Convolution can be thought of as the superposition of scaled and shifted impulse responses, or (for a fixed $n$) as the sum of products between $x[k]$ and a flipped and shifted $h[k]$ (over all $k$). See appendix section \ref{appx:conv} for a worked example.
+Convolution can be thought of as the superposition of scaled and shifted impulse responses, or (for a fixed $n$) as the sum of products between $x[k]$ and a flipped and shifted $h[k]$ (over all $k$).
 
-\subsection
+\subsubsection{Worked Example}
+Consider a window function (chosen for finite support)
+\begin{equation*}
+    h[n]  = [n]-u[n-N]  = \begin{cases*}
+        1 & $0\le n \le N-1$\\
+        0 & otherwise
+    \end{cases*}
+\end{equation*}
+and a decaying exponential ($a<1$) (chosen for boundedness)
+\begin{equation*}
+    x[n]  = a^nu[n] = \begin{cases*}
+        a^n & $n\ge 0$\\
+        0 & $n<0$
+    \end{cases*}
+\end{equation*}
+Visualizing this situation as a flip and shift of the window, we can better understand that
+\[x[n]*h[n]  = \begin{cases*}
+    0 & if $n<0$\\
+    \sum_{k=0}^n a^k & if $n\le N-1$\\
+    \sum_{k=n-(N-1)}^n a^k & otherwise\\
+\end{cases*}\]
+Recall that $$S_n = \sum_{k=0}^n a^k =\frac{1-a^{n+1}}{1-a} $$ and so
+\[x[n]*h[n]  = \begin{cases*}
+    0 & if $n<0$\\
+    \frac{1-a^{n+1}}{1-a} & if $n\le N-1$\\
+    a^{n-N+1}\frac{1-a^{n+1}}{1-a} & otherwise\\
+\end{cases*}\]
 
 \subsection{Properties}
 \subsubsection{Commutativity}
@@ -264,35 +290,5 @@ The accumulator function can be written as
 \section{DSP design workflow and synthesis}
 
 \fi
-
-\section{Appendix}
-\subsection{Worked Example: Convolution}\label{appx:conv}
-Consider a window function (chosen for finite support)
-\begin{equation*}
-    h[n]  = [n]-u[n-N]  = \begin{cases*}
-        1 & $0\le n \le N-1$\\
-        0 & otherwise
-    \end{cases*}
-\end{equation*}
-and a decaying exponential ($a<1$) (chosen for boundedness)
-\begin{equation*}
-    x[n]  = a^nu[n] = \begin{cases*}
-        a^n & $n\ge 0$\\
-        0 & $n<0$
-    \end{cases*}
-\end{equation*}
-Visualizing this situation as a flip and shift of the window, we can better understand that
-\[x[n]*h[n]  = \begin{cases*}
-    0 & if $n<0$\\
-    \sum_{k=0}^n a^k & if $n\le N-1$\\
-    \sum_{k=n-(N-1)}^n a^k & otherwise\\
-\end{cases*}\]
-Recall that $$S_n = \sum_{k=0}^n a^k =\frac{1-a^{n+1}}{1-a} $$ and so
-\[x[n]*h[n]  = \begin{cases*}
-    0 & if $n<0$\\
-    \frac{1-a^{n+1}}{1-a} & if $n\le N-1$\\
-    a^{n-N+1}\frac{1-a^{n+1}}{1-a} & otherwise\\
-\end{cases*}\]
-
 
 \end{document}
