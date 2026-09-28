@@ -141,6 +141,10 @@ and if it is also time-invariant, $h_k[n] = h[n-k]$ where $h[n]=T[\delta[n]]$, s
 \begin{equation}\label{eq:lti}
        y[n] = \sum_{k=-\infty}^\infty x[k]h[n-k]
 \end{equation}
+This is the output of the system when the input is a unit sample.
+\begin{equation}
+	   h[n] = T\{\delta[n]\}
+\end{equation}
 
 \subsection{Convolution}
 Equation \ref{eq:lti} is the DT convolution sum
@@ -148,6 +152,8 @@ Equation \ref{eq:lti} is the DT convolution sum
     y[n]= x[n]*h[n] =(x * h)[n] \equiv \sum_{k=-\infty}^\infty x[k]h[n-k]
 \end{equation}
 Convolution can be thought of as the superposition of scaled and shifted impulse responses, or (for a fixed $n$) as the sum of products between $x[k]$ and a flipped and shifted $h[k]$ (over all $k$). See appendix section \ref{appx:conv} for a worked example.
+
+\subsection
 
 \subsection{Properties}
 \subsubsection{Commutativity}
@@ -180,7 +186,70 @@ An LTI system is BIBO stable if and only if the impulse response is absolutely s
     B_h=\sum_{k=-\infty}^\infty |h[k]|<\infty
 \end{equation}
 
+% Lecture 3
+Given an absolutely summable $h$ and $\forall n, |x[n]|\le B_x\le\infty$
+\begin{align*}
+	y[n] &= \sum_{k=-\infty}^\infty h[k]x[n-k]\\
+	|y[n]| &= \left|\sum_{k=-\infty}^\infty h[k]x[n-k]\right|
+	    \le \sum_{k=-\infty}^\infty |h[k]x[n-k]|
+	    \le \sum_{k=-\infty}^\infty |h[k]||x[n-k]|\\
+	    &\le \sum_{k=-\infty}^\infty |h[k]|B_x
+	    = B_x\sum_{k=-\infty}^\infty |h[k]| = B_xB_h \le \infty
+\end{align*}
+
+To establish that BIBO stability implies absolute summability, we prove the contrapositive, that $h[n]$ not absolutely summable implies that there is no BIBO stability.
+
+Given $\sum_{k=-\infty}^\infty |h[n]|=\infty$, consider bounded input
+\[
+    x[n] = \begin{cases*}
+        \frac{h^*[-n]}{|h[-n]|} & if $h[n]\ne0$\\
+        0 & otherwise
+    \end{cases*}
+\]
+which has $|x[n]| \le 1$. Evaluating
+\begin{align*}
+	y[0] &= \sum_{k=-\infty}^\infty x[-k]h[k]\\
+	     &= \sum_{k=-\infty}^\infty \frac{h^*[k]}{|h[k]|}h[k]
+	      = \sum_{k=-\infty}^\infty |h[k]| = \infty
+\end{align*}
+and so an $h[n]$ that is not absolutely summable will not yield a BIBO stable system.
+
+\subsubsection{Impulse Response Test for Causality}
+For an LTI system,
+\[
+    y[n] = \sum_{k=-\infty}^\infty x[n-k]h[k]
+\]
+we want to zero out $k<0$ to prevent $x[n-k]$ to reach into the future. Therefore, an LTI system is causal when $\forall n<0$
+\begin{equation}
+    h[n]=0
+\end{equation}
+
+
 \section{Difference Equations, Fourier representations, and the DTFT}
+\subsection{Impulse Response Classifications}
+A \textbf{finite impulse response system} has an impulse response with only finitely many nonzero samples, and $h[n]=0$ outside of that finite impulse.
+A \textbf{infinite impulse response system} is the opposite, a $h[n]\ne0$ for infinitely many indices.
+
+A sufficiently long delay can make a non-causal FIR causal.
+
+\subsection{Inverse Systems}
+If an LTI system of impulse response $h[n]$ and it has an inverse $h_i[n]$, then
+\[ h[n]*h_i[n]  = h_i[n] * h[n] = \delta[n]\]
+
+\subsection{Difference Equations}
+The general difference equation describes an important class of LTI systems. We find sequences of constants $a_k,b_m$ such that
+\[
+    \sum_{k=0}^N a_ky[n-k] = \sum_{m=0}^M b_m x[n-m]
+\]
+This is an $N^{th}$ order linear constant-coefficient difference equation.
+
+\subsubsection{Examples}
+The accumulator function can be written as
+\begin{align}
+	y[n] &= \sum_{k=\infty}^n x[k] = x[n] + \sum_{k=\infty}^{n-1} x[k]\\
+	     &= x[n] + y[n-1]\\
+	y[n]-y[n-1] &= x[n]
+\end{align}
 
 \iffalse
 
