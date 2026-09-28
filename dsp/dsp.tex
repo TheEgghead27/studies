@@ -2,6 +2,7 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{physics}
  \usepackage{mathtools}
 
 \title{ELEN4810 -- Digital Signal Processing}
@@ -253,21 +254,34 @@ we want to zero out $k<0$ to prevent $x[n-k]$ to reach into the future. Therefor
 
 \section{Difference Equations, Fourier representations, and the DTFT}
 \subsection{Impulse Response Classifications}
-A \textbf{finite impulse response system} has an impulse response with only finitely many nonzero samples, and $h[n]=0$ outside of that finite impulse.
-A \textbf{infinite impulse response system} is the opposite, a $h[n]\ne0$ for infinitely many indices.
+A \textbf{finite impulse response system (FIR)} has an impulse response with only finitely many nonzero samples, and $h[n]=0$ outside of that finite impulse. All FIR systems are BIBO stable.
+Any FIR can be computed non-recursively, but some can also be computed recursively. A sufficiently long delay can make a non-causal FIR causal.
 
-A sufficiently long delay can make a non-causal FIR causal.
+A \textbf{infinite impulse response system (IIR)} is the opposite, a $h[n]\ne0$ for infinitely many indices. Some IIR systems are BIBO stable.
+
 
 \subsection{Inverse Systems}
 If an LTI system of impulse response $h[n]$ and it has an inverse $h_i[n]$, then
 \[ h[n]*h_i[n]  = h_i[n] * h[n] = \delta[n]\]
+For instance, the accumulator system ($h[n] = u[n]$, analogous to integration) and the backward difference system ($h[n] = \delta[n]-\delta[n-1]$, analogous to differentiation) are inverse systems.
 
 \subsection{Difference Equations}
 The general difference equation describes an important class of LTI systems. We find sequences of constants $a_k,b_m$ such that
 \[
     \sum_{k=0}^N a_ky[n-k] = \sum_{m=0}^M b_m x[n-m]
 \]
-This is an $N^{th}$ order linear constant-coefficient difference equation.
+This is an $N^{th}$ order linear constant-coefficient difference equation. If previous output values are referenced, there is a recursive representation.
+
+Solving for the output yields
+\begin{equation}\label{eq:difference-solved}
+	y[n] = -\sum_{k=1^N}\frac{a_k}{a_0}y[n-k] + \sum_{k=0}^M \frac{b_k}{a_0}x[n-k]
+\end{equation}
+and we note that in the $N=0$ case, this is equivalent to convolving with \[
+    h[n] = \begin{cases*}
+        \frac{b_n}{a_0} & $0\le n < M$\\
+        0 & else
+    \end{cases*}
+\]
 
 \subsubsection{Examples}
 The accumulator function can be written as
@@ -276,6 +290,88 @@ The accumulator function can be written as
 	     &= x[n] + y[n-1]\\
 	y[n]-y[n-1] &= x[n]
 \end{align}
+so the accumulator can be represented recursively as an adder that adds $x[n]$ to the time-delayed $y[n-1]$.
+
+An FIR moving average with $M_1=0$ can be represented non-recursively as
+\[
+    y[n] = \frac{1}{M_2+1}\sum_{k=0}^{M_2}x[n-k]
+\]
+but also we can factor the impulse response
+\[
+    h[n] = \frac{1}{M_2+1}\left(u[n]-u[n-M_2-1]\right)
+         = \frac{1}{M_2+1}\left(\delta[n]-\delta[n-M_2-1]\right)*u[n]
+\]
+which can be implemented as a scaling, a delayed subtraction, and a recursive accumulation.
+
+\subsubsection{Solutions to Difference Equations}
+For a given input $x_p[n]$ with possible solution $y_p[n]$, the general form of solutions to the difference equation take the form
+\[
+    y[n] = y_p[n] + y_h[n]
+\]
+where $y_h[n]$ is a homogeneous solution satisfying the homogeneous difference equation
+\[
+    \sum_{k=0}^N a_k y_h[n-k]=0
+\]
+and for $N\ge1$, in order to discern the specific solution $y[n]$, $N$ initial conditions are necessary.
+
+Just as $\dv{t}(e^{at})=a\left(e^{at}\right)$ ($e^{at}$ is an eigenfunction under differentiation), $z^n$ is the analogous eigenfunction under DT delays. A delay \[
+    D\{x[n]\} = x[n-1]
+\] applied $k$ times to an exponential $z^n$ yields \[
+    D^K\{z^n\} =z^{-k}z^n
+\]
+and we write a polynomial in delays to represent the homogeneous difference equation:
+\[
+    (a_0+a_1D+a_2D^2+\cdots+a_ND^N)y_h[n]=0
+\]
+using $z^n$ as the trial sequence
+\[
+    (a_0+a_1z^{-1}+a_2z^{-2}+\cdots+a_Nz^{-N})z^n = z^n\sum_{k=0}^N a_kz^{-k} =0
+\]
+Labeling the summation as $A(z)$, we call the $z_m$ roots of $A(z)$ \textbf{characteristic roots}, which identify a solution of the form $z^n_m$.
+
+For distinct roots, we can linearly combine all the solutions (scaling by undetermined coefficients $A_m$)
+\[
+    y_h[n] = \sum_{m=1}^N A_mz_m^n
+\]
+which require $N$ initial conditions (such as $y[-1], y[-2], \cdots, y[-N]$). When the system is expressed by a recursive difference equation, whether the system is linear, time-invariant, and causal all depend on those auxiliary conditions. \textbf{Initial rest} is one such choice (used for causal filter design) is to let
+\begin{align}
+	\forall n<n_0, x[n] = 0 \implies \forall n<n_0, y[n] = 0
+\end{align}
+
+\subsection{Fourier Representations}
+An LTI system changes an input signal's complex amplitude by a complex scale factor (the \textbf{frequency response} $H(e^{j\omega})$), but not its fundamental frequency. Consider convolving an input $x[n]=e^{j \omega n}$ and defining $m=n-k$
+\begin{align*}
+   y[n] &= \sum_{k=-\infty}^\infty e^{j\omega k}h[n-k]\\
+        &= \sum_{m=-\infty}^\infty e^{j\omega {m + n}}h[m]\\
+        &= e^{j\omega n}\sum_{m=-\infty}^\infty e^{j\omega {m}}h[m]\\
+        &= H(e^{j\omega})e^{j\omega n}\\
+        &= \left|H(e^{j\omega})\right|e^{j(\omega n + \angle H(e^{j\omega})}
+\end{align*}
+where we express the complex frequency response in rectangular and polar forms
+\[
+    H(e^{j\omega}) = H_{Re}(e^{j\omega}) + H_{Im}(e^{j\omega}) = \left|H(e^{j\omega})\right|e^{\angle H(e^{j\omega})}
+\]
+
+\subsubsection{Real Impulse Responses}
+For real $h[n]$, $h[n]=h^*[n]$
+\[
+     H(e^{j\omega}) = \sum_{n=-\infty}^\infty h[n]e^{-j\omega n}
+\]
+and then taking the complex conjugate of the frequency response,
+\[
+    H^*(e^{j\omega})
+                    = \sum_{n=-\infty}^\infty h^*[n]e^{j\omega n}
+                    = \sum_{n=-\infty}^\infty h[n]e^{-j(-\omega) n}
+                    = H(e^{-j\omega})
+\]
+so the frequency response at opposite frequencies are complex conjugates.
+
+
+\subsubsection{Example: Ideal Delay}
+$y[n] = x[n-n_d]$ has \[
+    H(e^{j\omega}) = e^{j\omega n_d}
+\] so the magnitude is always $1$ and the phase shift is linear.
+
 
 \iffalse
 
