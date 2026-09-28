@@ -3,7 +3,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{physics}
- \usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{mathtools}
 
 \title{ELEN4810 -- Digital Signal Processing}
 \author{David Chen}
@@ -13,22 +14,21 @@
 
 \maketitle
 
-\section{Foundations: Signals and Sequences}
-\subsection{Signals}
+%\section{Foundations: Signals and Sequences}
+\section{Signals}
 A \textbf{signal} conveys information as a function over some independent variable(s). The independent variable tells us what it means for two values to be adjacent, delayed, shifted, or repeated.
 
 A \textbf{continuous-time (CT)} signal $x_c(t)$ has a continuous independent variable $t\in\mathbb{R}$ and continuous amplitudes.
 
 A \textbf{discrete-time (DT)} signal $x[n]$ has a discrete independent variable $n\in\mathbb{Z}$ and continuous or quantized amplitudes. A \textbf{digital} signal $x_q[n]$ is a special case of the DT signal where the amplitude is restricted to a discrete, finite set of levels.
 
-\subsubsection{Sampling}
+\subsection{Sampling}
 For a sampling period $T$ (sampling frequency
 \begin{equation}
     x[n]=x_a(nT)
 \end{equation}
 
 
-% section?
 A DT system $\textit{T}$ maps an input sequence to an output sequence.
 \begin{equation}
     y[n] = \textit{T}(x[n])
@@ -43,8 +43,8 @@ For two indices $M_1,M_2\ge0\in\mathbb{Z}$
 This is used to smooth out signal noise when we expect  the noise to have 0 mean.
 
 
-\AddToHook{cmd/section/before}{\clearpage}
-\section{Foundations II: LTI Systems, Convolution, System Properties}
+\section{System Properties}
+%\section{Foundations II: LTI Systems, Convolution, System Properties}
 \subsection{Memoryless Systems}
 A system is memoryless if and only if $\forall n,$ $y[n]$ depends only on $x[n]$ at the same $n$.
 \subsubsection{The Ideal Delay System}
@@ -133,7 +133,7 @@ n+1 &if $n\ge 0$\\
 which we cannot find a $B_y<\infty$ for.
 
 
-\subsection{Linear Time-Invariant Systems}
+\section{Introduction to Linear Time-Invariant Systems}
 LTI systems are both linear and time invariant. This is useful because any sequence can be written as a linear combination of delayed impulses
 $$x[n] = \sum_{k=-\infty}^\infty x[k]\delta[n-k]$$
 and for a linear system, given $h_k[k] = T[\delta[n-k]]$,
@@ -252,7 +252,7 @@ we want to zero out $k<0$ to prevent $x[n-k]$ to reach into the future. Therefor
 \end{equation}
 
 
-\section{Difference Equations, Fourier representations, and the DTFT}
+%\section{Difference Equations, Fourier representations, and the DTFT}
 \subsection{Impulse Response Classifications}
 A \textbf{finite impulse response system (FIR)} has an impulse response with only finitely many nonzero samples, and $h[n]=0$ outside of that finite impulse. All FIR systems are BIBO stable.
 Any FIR can be computed non-recursively, but some can also be computed recursively. A sufficiently long delay can make a non-causal FIR causal.
@@ -338,7 +338,7 @@ which require $N$ initial conditions (such as $y[-1], y[-2], \cdots, y[-N]$). Wh
 	\forall n<n_0, x[n] = 0 \implies \forall n<n_0, y[n] = 0
 \end{align}
 
-\subsection{Fourier Representations}
+\section{Fourier Representations}
 An LTI system changes an input signal's complex amplitude by a complex scale factor (the \textbf{frequency response} $H(e^{j\omega})$), but not its fundamental frequency. Consider convolving an input $x[n]=e^{j \omega n}$ and defining $m=n-k$
 \begin{align*}
    y[n] &= \sum_{k=-\infty}^\infty e^{j\omega k}h[n-k]\\
@@ -352,7 +352,7 @@ where we express the complex frequency response in rectangular and polar forms
     H(e^{j\omega}) = H_{Re}(e^{j\omega}) + H_{Im}(e^{j\omega}) = \left|H(e^{j\omega})\right|e^{\angle H(e^{j\omega})}
 \]
 
-\subsubsection{Real Impulse Responses}
+\subsection{Real Impulse Responses}
 For real $h[n]$, $h[n]=h^*[n]$
 \[
      H(e^{j\omega}) = \sum_{n=-\infty}^\infty h[n]e^{-j\omega n}
