@@ -3,6 +3,8 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{outlines}
 \usepackage{amsmath}
+\usepackage{physics}
+\usepackage[hidelinks]{hyperref}
 \usepackage{tablefootnote}
 \usepackage{multirow}
 
@@ -161,7 +163,7 @@ The \textbf{Midpoint Formula} form of elasticity is
 For a linear demand curve, elasticity decreases as the quantity sold increases (we move down the demand curve).
 
 Demand for a good and its relationship to \textbf{total revenue} ($TR=P\cdot Q$) is summarized in table \ref{tab:3.1}.
-Plotting the total revenue on the Q-axis of a linear demand curve yields a parabola\footnote{The total revenue parabola is symmetric, but the total cost of production will monotonically increase. Thus, to maximize profit $\Pi = TR-TC$, firms remain on the left (elastic) side of the curve, or most optimally, the midpoint.} with maximal revenue at $\epsilon=1$. For prices left of (lower) than the vertex, there is elastic demand: a price cut (hike) increases (decreases) revenue, and to the right the inverse is true.
+Plotting the total revenue on the Q-axis of a linear demand curve yields a parabola\footnote{The total revenue parabola is symmetric, but the total cost of production will monotonically increase. Thus, to maximize profit $\pi = TR-TC$, firms remain on the left (elastic) side of the curve, or most optimally, the midpoint.} with maximal revenue at $\epsilon=1$. For prices left of (lower) than the vertex, there is elastic demand: a price cut (hike) increases (decreases) revenue, and to the right the inverse is true.
 
 \begin{table}[hb]
     \centering
@@ -301,10 +303,70 @@ Studies employ games to observe human behavior. Given real money, we consider
 	\item The \textbf{Dictator Game}, where 2 anonymous individuals interact, one is randomly chosen to split \$1000 without fear of reprisal, with $\frac{2}{3}$ of  dictators choosing to split, $17\%$ giving half, and over $5\%$ giving all to the powerless player.
 	\item The \textbf{Ultimatum Game}, where 1 player is randomly chosen to propose a split and the second must agree or nobody gets money. Usually, the proposer takes care to be respectful of the other player.
 \end{itemize}
+\section{Theory of the Firm}
+We propose that the firm solves for the optimal $Q^*$ that maximizes profit ($\pi = TR-TC$, revenue minus costs). This may be through indirect means, such as subsidizing expansion or investing in employee happiness, but all with the intention of future profit.
+
+\subsection{Principal Agent Problem}
+The shareholders own the company with an eye towards profit, appointing a board of directors to manage the CEO who runs the company. To incentivize the CEO to act according to the profit incentive, CEO compensation can be bound to stock, stock price performance, or through threats of firing.
+
+\subsection{Production and Cost Functions}
+The total production principally depends on capital ($K$) and Labor.
+\[
+    TP=f(K, L, \cdots)
+\]
+We assume that the function is monotonically decreasing on the domain of relevance (no rational firm would be on the decreasing domain). Considering a $TP = \sqrt{KL}$, The \textbf{marginal physical product of labor ($MP_L$)}  is the slope (derivative) of $TP$ with respect to $L$, which decreases (\textbf{Law of Diminishing Marginal Returns}). This implies a \textbf{Law of Increasing Costs}.
+
+The total cost is the sum of the fixed cost (in the \textbf{short term}\footnote{The \textbf{short term} is when factors cannot change, as opposed to the \textbf{long term} when all could change.} inclusive of opportunity cost) and the variable costs.
+\[
+    TC=FC+VC
+\]
+We make some simple statements about the \textbf{Marginal Cost}, \textbf{Average Fixed Cost}, and \textbf{Average Cost}.
+\begin{align*}
+    MC &= \dv{TC}{Q} = \dv{VC}{Q}\\
+	AFC &= \frac{FC}{Q}\\
+	AVC &= \frac{VC}{Q}\\
+	FC &= AFC \times Q\\
+	AC &= \frac{TC}{Q} = AFC + AVC\\
+\end{align*}
+One point of note is that $MC=AC$ at the minimum $AC$ ($MC>AC$ implies $AC$ will grow, and $MC<AC$ implies the opposite).
+
+The \textbf{break-even point} is when $TR=TC$ ($\pi=0$), with the first break-even point being the minimum target for a firm. Profit is at a maximum when $MC=MR$ (and $MC$ is increasing, $\dv[2]{TC}{Q}>0$). The region between the $MC$ and $MR$ curves is the total profit if and only if $FC=0$.
+
+\section{Competitive Markets}
+We will consider the structure, conduct (short and long run), and performance (short/long run) of firms, along with their general welfare (are they doing good or bad for themselves? for society?). We declare a spectrum of
+\begin{enumerate}
+	\item Perfect Competition
+	\item Monopolistic Competition
+	\item Oligopoly
+	\item Monopoly
+\end{enumerate}
+The latter three are considered \textbf{imperfect competition}. In this section, we cover \textbf{perfect competition} which entails the assumptions that there is
+\begin{itemize}
+	\item easy entrance/exit to/from the market
+	\item an abundance of buyers and sellers
+	\item a homogenous product where the products are \textit{similar}, irrespective of brand
+	\item perfect information available about prices, profit, and utility to the consumer\footnote{The internet has enabled steps towards this.}
+\end{itemize}
+The assumption that there are no \textbf{barriers to entry} implies that firms are \textit{price takers}. Thus, although the general demand curve is downward-sloping, the demand curve for a single firm is \textit{perfectly elastic}, yielding a horizontal line of $P=P^*$. A single firm will produce $q$ product, with $Q = \sum q$. For a given firm, $MR=P$,
+\[
+    TR = \int_0^q P\,dQ = P\cdot q\\
+\]
+\[
+    TC = \int_0^q AC\,dQ = AC\cdot q
+\]
+\[
+    \pi = TR - TC = q(P-AC)\\
+\]
+and we denote the price minus the (average) unit cost the \textbf{per-unit profit}. An unprofitable firm will experience $AC<P$, such that no matter what $\pi<0$.
+
+Since perfect information about profit (inclusive of opportunity cost) is available, additional firms will enter the market. Recalling the supply curve in equation \ref{eq:1.2}, we note that the number of firms will increase supply ($S<S'$), thus causing a drop in price ($P^* <P^{*\prime}$) and per-firm production/profit to decrease ($q<q'$, $\pi<\pi'$). In the steady-state, we have
+\[\pi = 0 = P-AC\]
+\[ P = MR = MC = AC_{min}\]
+In the real world, firms must erect barrier to entry (establishing a ``moat'') into maintain high profits.
+
+This is the \textbf{invisible hand of the market} at work: rather than the government intervening, consumers naively maximizing marginal utility/benefit (self-interest) and sellers maximizing profit (greed) yielded an optimal allocation of resources based on how much we value a product as a society. ($P=MU>MC$ means the world would be happier for producing it)
 
 \iffalse
-\section{Theory of the Firm}
-\section{Competitive Markets}
 \section{Competitive Markets II}
 \section{Market Failures: Monopoly}
 \section{Factor Markets}
