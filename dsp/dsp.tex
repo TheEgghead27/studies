@@ -404,8 +404,28 @@ An LTI system changes an input signal's complex amplitude by a complex scale fac
 \end{align*}
 where we express the complex frequency response in rectangular and polar forms
 \[
-    H(e^{j\omega}) = H_{Re}(e^{j\omega}) + H_{Im}(e^{j\omega}) = \left|H(e^{j\omega})\right|e^{\angle H(e^{j\omega})}
+    H(e^{j\omega})= H_{Re}(e^{j\omega}) + H_{Im}(e^{j\omega}) = \left|H(e^{j\omega})\right|e^{\angle H(e^{j\omega})}
 \]
+In short complex exponentials are \textit{eigenfunctions} with $H(e^{j\omega})$ yielding the \textit{eigenvalues}. We treat the complex exponentials as an orthonormal basis of norm 1.
+\subsection{Discrete-Time Fourier Transform (DTFT)}
+The DTFT of $x[n]$ is \[
+    X(e^{j\omega}) = \sum_{k=-\infty}^\infty x[n]e^{-j\omega n}
+\]
+Note that The DTFT of $h[n]$ is the frequency response.
+
+\subsubsection{Inverse Discrete-Time Fourier Transform (iDTFT)}
+Assuming convergent conditions, the inverse DTFT \[
+    x[n] = \frac{1}{2\pi} \int_{-\pi}^\pi X(e^{j\omega})e^{j\omega n}\,d\omega
+\]
+can be used to transform back to the time-domain space.
+%Proof of this statement leverages that complex exponentials are an orthonormal basis.
+We can prove this by leveraging the linearity of integration
+
+and we take a moment to show the orthonormality of complex exponentials
+
+which we plug back in to yield the original sequence.
+
+
 
 \subsection{Real Impulse Responses}
 For real $h[n]$, $h[n]=h^*[n]$
@@ -427,6 +447,32 @@ $y[n] = x[n-n_d]$ has \[
     H(e^{j\omega}) = e^{j\omega n_d}
 \] so the magnitude is always $1$ and the phase shift is linear.
 
+\subsection{Frequency-Selective Filters}
+Frequency selectivity is a statement about how sinusoidal components are retained or rejected.
+
+\subsubsection{Example: Ideal Lowpass}
+For instance, the \textit{ideal} lowpass filter (which ``smooths out'' signals) can be defined as
+\[
+    H_{lp}(e^{j\omega}) = \begin{cases}
+        1 & |\omega| < \omega_c\\
+        0 & \omega_c< |w| \le \pi
+    \end{cases}
+\]
+where we define this system from $[-\pi,\pi]$ since the frequency response is $2\pi$-periodic.
+The highpass, bandpass, and bandstop systems can be defined analogously.
+
+\subsubsection{Example: Moving Average}
+Considering a causal moving-average of window $M_2+1$, there is
+\[
+    h[n] = \begin{cases}
+        \frac{1}{M_2+1} &  0\le n \le M_2\\
+        0 & \textrm{else}
+    \end{cases}
+\]
+We can calculate its frequency response
+
+
+and then we notice that it serves as an imperfect LP filter, with the
 
 \iffalse
 
