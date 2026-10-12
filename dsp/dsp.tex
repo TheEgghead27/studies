@@ -10,6 +10,9 @@
 \author{David Chen}
 \date{September 2026}
 
+\newcommand{\jw}{j\omega}
+\newcommand{\conv}{\sum_{k=-\infty}^\infty}
+
 \begin{document}
 
 \maketitle
@@ -409,7 +412,7 @@ where we express the complex frequency response in rectangular and polar forms
 In short complex exponentials are \textit{eigenfunctions} with $H(e^{j\omega})$ yielding the \textit{eigenvalues}. We treat the complex exponentials as an orthonormal basis of norm 1.
 \subsection{Discrete-Time Fourier Transform (DTFT)}
 The DTFT of $x[n]$ is \[
-    X(e^{j\omega}) = \sum_{k=-\infty}^\infty x[n]e^{-j\omega n}
+    X(e^{j\omega}) = \conv x[k]e^{-\jw k}
 \]
 Note that The DTFT of $h[n]$ is the frequency response.
 
