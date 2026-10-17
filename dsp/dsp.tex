@@ -10,8 +10,9 @@
 \author{David Chen}
 \date{September 2026}
 
-\newcommand{\jw}{j\omega}
-\newcommand{\conv}{\sum_{k=-\infty}^\infty}
+\newcommand{\jw}{{j\omega}}
+\newcommand{\w}{\omega}
+\newcommand{\sumkinfty}{\sum_{k=-\infty}^\infty}
 
 \begin{document}
 
@@ -411,26 +412,58 @@ where we express the complex frequency response in rectangular and polar forms
 \]
 In short complex exponentials are \textit{eigenfunctions} with $H(e^{j\omega})$ yielding the \textit{eigenvalues}. We treat the complex exponentials as an orthonormal basis of norm 1.
 \subsection{Discrete-Time Fourier Transform (DTFT)}
-The DTFT of $x[n]$ is \[
-    X(e^{j\omega}) = \conv x[k]e^{-\jw k}
+The DTFT $F\{x[n]\}$ is \[
+    X(e^{j\omega}) = \sumkinfty x[k]e^{-\jw k}
 \]
-Note that The DTFT of $h[n]$ is the frequency response.
+Note that the DTFT of $h[n]$ is the frequency response.
+
+The DTFT will exist for finite and stable $x[n]$, as
+\[
+    |X(e^{j\omega})| \le \sumkinfty \left|x[k]e^{-\jw k}\right| = \sumkinfty |x[n]|
+\]
 
 \subsubsection{Inverse Discrete-Time Fourier Transform (iDTFT)}
 Assuming convergent conditions, the inverse DTFT \[
     x[n] = \frac{1}{2\pi} \int_{-\pi}^\pi X(e^{j\omega})e^{j\omega n}\,d\omega
 \]
 can be used to transform back to the time-domain space.
-%Proof of this statement leverages that complex exponentials are an orthonormal basis.
-We can prove this by leveraging the linearity of integration
 
-and we take a moment to show the orthonormality of complex exponentials
+To verify this, we leverage the linearity of integration and summation.
+\begin{align*}
+	x[n] \stackrel{?}{=}&\frac{1}{2\pi} \int_{-\pi}^\pi X(e^{j\omega})e^{j\omega n}\,d\omega\\
+		                  =& \frac{1}{2\pi} \int_{-\pi}^\pi \sumkinfty x[k]e^{-\jw k} e^{j\omega n}\,d\omega\\
+		                  =& \frac{1}{2\pi} \sumkinfty \int_{-\pi}^\pi x[k]e^{-\jw k} e^{j\omega n}\,d\omega\\
+		                  =& \frac{1}{2\pi} \sumkinfty x[k]\int_{-\pi}^\pi e^{j\omega (n-k)}\,d\omega\\
+\end{align*}
+and since the complex exponentials integral from $-\pi$ to $\pi$ is $0$ unless $n=k$ in which case it is $2\pi$, we can write this as
+\begin{align*}
+	x[n] \stackrel{?}{=}& \frac{1}{2\pi} \sumkinfty x[k] \int_{-\pi}^\pi 2\pi\delta[n-k]\,d\omega\\
+	    =& \sumkinfty x[k]\delta[n-k] = x[n]
+\end{align*}
 
-which we plug back in to yield the original sequence.
+\subsection{Application: Transient Responses}
+For a complex exponential signal that we switch on at $n=0$
+\[
+    x[n] = e^{\jw_0n}u[n]
+\]
+in a causal and stable LTI, we can bound the convolution based on causality and the unit step
+\begin{align*}
+    y[n] &= \sum_{k=0}^n h[k]e^{-jw_0(n-k)} \\
+         &= \sum_{k=0}^\infty h[k]e^{-jw_0(n-k)} - \sum_{k=n+1}^\infty h[k]e^{-jw_0(n-k)} \\
+         &= e^{\jw_0n}\sum_{k=0}^\infty h[k]e^{-jw_0k} - e^{\jw_0n}\sum_{k=n+1}^\infty h[k]e^{-jw_0k} \\
+         &= e^{\jw_0n}H(e^\jw) - e^{\jw_0n}\sum_{k=n+1}^\infty h[k]e^{-jw_0k}
+\end{align*}
+and so we define the steady-state and transient responses as
+\begin{align*}
+	y_{ss}[n] = e^{\jw_0n}H(e^\jw) && y_{t}[n] =- e^{\jw_0n}\sum_{k=n+1}^\infty h[k]e^{-jw_0k}
+\end{align*}
+for a finite-impulse response system, there exists some $m$ where $\forall m > k, h[k]=0$. For BIBO stable systems, we can bound
+\[
+    \sum_{k=n+1}^\infty \left|y_t[n]\right| = \left|e^{\jw_0n}\right|\sum_{k=n_1}^\infty \left|h[k]e^{-\jw_0k}\right| = \sum_{k=n+1}^\infty |h[k]|\le \sum_{k=0}^\infty
+\]
+(hence our stability condition) and this term will decay to $0$.
 
-
-
-\subsection{Real Impulse Responses}
+\subsection{Impulse/Frequency Response Properties}
 For real $h[n]$, $h[n]=h^*[n]$
 \[
      H(e^{j\omega}) = \sum_{n=-\infty}^\infty h[n]e^{-j\omega n}
@@ -458,7 +491,7 @@ For instance, the \textit{ideal} lowpass filter (which ``smooths out'' signals) 
 \[
     H_{lp}(e^{j\omega}) = \begin{cases}
         1 & |\omega| < \omega_c\\
-        0 & \omega_c< |w| \le \pi
+        0 & \omega_c< |\w| \le \pi
     \end{cases}
 \]
 where we define this system from $[-\pi,\pi]$ since the frequency response is $2\pi$-periodic.
@@ -473,9 +506,29 @@ Considering a causal moving-average of window $M_2+1$, there is
     \end{cases}
 \]
 We can calculate its frequency response
-
-
-and then we notice that it serves as an imperfect LP filter, with the
+\begin{align*}
+	H(e^\jw)&=\sum_{m=-\infty}^\infty h[m] e^{\jw m}\\
+	    &= \sum_{m=0}^{M_2} \frac{1}{M_2+1} e^{\jw m}\\
+	    &= \frac{1}{M_2+1}\sum_{m=0}^{M_2}  e^{\jw m}\\
+	    &= \frac{1}{M_2+1} \frac{1-e^{-\jw\left(M_2+1\right)}}{1-e^{-\jw}}
+\end{align*}
+and then we consider that $1-e^{-\jw} = e^{-\frac{\jw}{2}}\left(e^\frac{\jw}{2}-e^{-\frac{\jw}{2}}\right) = e^{-\frac{\jw}{2}}\left(2j\sin(\frac{\w}{2})\right)$, so
+\begin{align*}
+	H(e^\jw)
+	&=\frac{1}{M_2+1}\frac{
+	    e^{-\jw\left(\frac{M_2+1}{2}\right)}\sin(\w\frac{M_2+1}{2})
+	}{
+	    e^{\frac{-\jw}{2}}\sin(\frac{\w}{2})
+	}\\
+	&=\frac{
+	    e^{-\frac{\jw M_2}{2}}
+	}{M_2+1} \frac{
+	    sin(\w\frac{M_2+1}{2})
+	}{
+	    \sin(\frac{\w}{2})
+	}
+\end{align*}
+and plotting the magnitude of this frequency response, we notice that it serves as an imperfect LP filter with a large low-frequency response, but also lobes at high frequency and phase shifts (that trend linear relative to frequency, jumping at sign changes). We can consider the filter to have a smoothing effect on the signal.
 
 \iffalse
 
