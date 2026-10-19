@@ -530,6 +530,28 @@ and then we consider that $1-e^{-\jw} = e^{-\frac{\jw}{2}}\left(e^\frac{\jw}{2}-
 \end{align*}
 and plotting the magnitude of this frequency response, we notice that it serves as an imperfect LP filter with a large low-frequency response, but also lobes at high frequency and phase shifts (that trend linear relative to frequency, jumping at sign changes). We can consider the filter to have a smoothing effect on the signal.
 
+\subsection{Properties of the DTFT}
+% 2026-10-19, not even on midterm lmao
+\subsection{Parseval's Theorem}
+For finite energy sequences $x[n]$ and $y^*[n]$ (ensuring convergence)
+\begin{align*}
+    \frac{1}{2\pi}\int_{-\pi}^\pi X(e^\jw)Y^*(e^\jw)\,d\omega &=
+    \frac{1}{2\pi}\int_{-\pi}^\pi \sum_{n=-\infty}^\infty x[n] e^{-\jw n}\sum_{m=-\infty}^\infty y^*[m]e^{-\jw m}\,d\omega\\
+        &=
+        \frac{1}{2\pi}\sum_{n=-\infty}^\infty \sum_{m=-\infty}^\infty x[n] y^*[m]\int_{-\pi}^\pi e^{-\jw n}e^{-\jw m}\,d\omega\\
+        &=
+        \frac{1}{2\pi}\sum_{n=-\infty}^\infty \sum_{m=-\infty}^\infty x[n] y^*[m] 2\pi\delta[n-m]\,d\omega\\
+        &=
+        \sum_{n=-\infty}^\infty x[n] y^*[n]\\
+\end{align*}
+and so
+\[
+    \sum_n x[n]y^*[n] = \frac{1}{2\pi}\int_{-\pi}^\pi X(e^\jw)Y^*(e^\jw)\,d\omega
+\]
+and in the specific case of $y^*[n]=x^*[n]$, we find that integrating the energy density spectrum $\qty|X(e^\jw)|^2$ yields the total energy in the time domain (up to a scalar).
+\[
+    \sum_{k=-\infty}^\infty \qty|x[n]|^2 = \frac{1}{2\pi}\int_{-\pi}^\pi \qty|X(e^\jw)|^2\,d\w
+\]
 \iffalse
 
 \section{Sampling, reconstruction, and rate conversion}
