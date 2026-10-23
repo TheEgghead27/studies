@@ -68,7 +68,16 @@ We can model the demand function using the variables in Table \ref{tab:1.1} as a
     \caption{Variables for Equation \ref{eq:1.1} and their impact on the demand curve.}
     \label{tab:1.1}
 \end{table}
-\\The economics student must be careful to distinguish between $\Delta Q_D$, a change in $P$ resulting in movement \textit{along} the demand curve and $\Delta D$, a shift in the demand curve\tablefootnote{rightward for increasing demand, leftward for decreasing} due to a change in the other factors.
+One mnemonic that can be used to remember this is PINTE:
+\begin{itemize}
+	\item Price of related goods
+	\item Income
+	\item Number of consumers
+	\item Tastes \& preferences
+	\item Expectation of future prices
+\end{itemize}
+The economics student must be careful to distinguish between $\Delta Q_D$, a change in $P$ resulting in movement \textit{along} the demand curve and $\Delta D$, a shift in the demand curve\tablefootnote{rightward for increasing demand, leftward for decreasing} due to a change in the other factors.
+
 We can model the supply curve analogously using the variables in Table \ref{tab:1.2}.
 \begin{equation}\label{eq:1.2}
     \textrm{Supply} = f(P,FP, TE, P^e, \#, |T)
@@ -89,6 +98,15 @@ We can model the supply curve analogously using the variables in Table \ref{tab:
     \caption{Variables for Equation \ref{eq:1.2} and their impact on the demand curve.}
     \label{tab:1.2}
 \end{table}
+One mnemonic that can be used to remember this is COTTEN:
+\begin{itemize}
+	\item Cost of inputs
+	\item Opportunity for profit
+	\item Technology
+	\item Taxes \& subsidies
+	\item Expectations
+	\item Number of suppliers
+\end{itemize}
 In this course, we will engage in \textbf{comparative statics}, where we start at the equilibrium point and consider how an event will shift the demand curve (holding all else constant, i.e. ``\textbf{ceteris paribus}'').
 
 
@@ -128,7 +146,7 @@ We summarize the effects of changes in demand/supply on the equilibrium price an
     \termb{Producer Surplus}
     $= \int_0^{Q^*} \left(P^*-S(Q)\right) \,dQ$, the area above the demand curve and below the equilibrium price. This represents how much less some producers \textit{would} have sold their product at, but do not have to in this market.
     \2 An auction, or any other manner of (perfect) price discrimination minimizes consumer surplus.
-    \termb{Allocative Efficiency} $= \textrm{Consumer Surplus} + \textrm{Producer Surplus}$
+    \termb{Allocative Efficiency} $= \textrm{Consumer Surplus} + \textrm{Producer Surplus}$, maximized at $P=MC$ -- the cost to society $MC$ is matched to the value it brings to society $P$.
     \term{Gross Price $P^g$} The money a consumer pays for a good including taxes.
     \term{Net Price $P^n$} The money a producer receives for a good after taxes.
 \end{outline}
@@ -328,7 +346,7 @@ We make some simple statements about the \textbf{Marginal Cost}, \textbf{Average
 	FC &= AFC \times Q\\
 	AC &= \frac{TC}{Q} = AFC + AVC\\
 \end{align*}
-One point of note is that $MC=AC$ at the minimum $AC$ ($MC>AC$ implies $AC$ will grow, and $MC<AC$ implies the opposite).
+One point of note is that $MC=AC$ at the minimum $AC$ ($MC>AC$ implies $AC$ will grow, and $MC<AC$ implies the opposite). Similar reasoning applies to $MC=AVC$.
 
 The \textbf{break-even point} is when $TR=TC$ ($\pi=0$), with the first break-even point being the minimum target for a firm. Profit is at a maximum when $MC=MR$ (and $MC$ is increasing, $\dv[2]{TC}{Q}>0$). The region between the $MC$ and $MR$ curves is the total profit if and only if $FC=0$.
 
@@ -347,7 +365,7 @@ The latter three are considered \textbf{imperfect competition}. In this section,
 	\item a homogenous product where the products are \textit{similar}, irrespective of brand
 	\item perfect information available about prices, profit, and utility to the consumer\footnote{The internet has enabled steps towards this.}
 \end{itemize}
-The assumption that there are no \textbf{barriers to entry} implies that firms are \textit{price takers}. Thus, although the general demand curve is downward-sloping, the demand curve for a single firm is \textit{perfectly elastic}, yielding a horizontal line of $P=P^*$. A single firm will produce $q$ product, with $Q = \sum q$. For a given firm, $MR=P$,
+The assumption that there are no \textbf{barriers to entry} implies that firms are \textbf{price takers} (no pricing power). Thus, although the general demand curve is downward-sloping, the demand curve for a single firm is \textit{perfectly elastic}, yielding a horizontal line of $P=P^*$. A single firm will produce $q$ product, with $Q = \sum q$. For a given firm, $MR=P$,
 \[
     TR = \int_0^q P\,dQ = P\cdot q\\
 \]
@@ -366,8 +384,11 @@ In the real world, firms must erect barrier to entry (establishing a ``moat'') i
 
 This is the \textbf{invisible hand of the market} at work: rather than the government intervening, consumers naively maximizing marginal utility/benefit (self-interest) and sellers maximizing profit (greed) yielded an optimal allocation of resources based on how much we value a product as a society. ($P=MU>MC$ means the world would be happier for producing it)
 
+We note that a firm will continue to operate in the short-term at a loss $P<AC$ so long as $P>AVC$, the sale of each additional unit helps defray fixed costs. In the long run, these fixed costs are avoidable (``variable'') by the firm going out of business unless $P>AC$. The \textbf{shutdown point} where the firm will immediately cease operations would be $P< AVC$.
+
+
+
 \iffalse
-\section{Competitive Markets II}
 \section{Market Failures: Monopoly}
 \section{Factor Markets}
 \section{Market Failures: Imperfect Competition II}
