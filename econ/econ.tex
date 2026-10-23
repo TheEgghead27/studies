@@ -143,6 +143,7 @@ We summarize the effects of changes in demand/supply on the equilibrium price an
     \2 Taking the labor market for example, a higher minimum wage will lead to layoffs of low-value workers (for a firm will only hire employees worth more to them than the salary demanded). There will be a surplus of labor (unemployment). Removing the minimum wage allows for movement down the supply curve (less job-seekers, more people occupied in education or whatnot) and up the demand curve (hiring more people).
     \termb{Consumer Surplus}
     $= \int_0^{Q^*} \left(D(Q) - P^*\right) \,dQ$, the area under the demand curve and above the equilibrium price. This represents how much more some consumers \textit{would} have paid, but do not have to in this market.
+    \2 This is likely to reduce societal surplus, certainly producer surplus decreases, and consumer surplus will vary in scale.
     \termb{Producer Surplus}
     $= \int_0^{Q^*} \left(P^*-S(Q)\right) \,dQ$, the area above the demand curve and below the equilibrium price. This represents how much less some producers \textit{would} have sold their product at, but do not have to in this market.
     \2 An auction, or any other manner of (perfect) price discrimination minimizes consumer surplus.
@@ -386,15 +387,59 @@ This is the \textbf{invisible hand of the market} at work: rather than the gover
 
 We note that a firm will continue to operate in the short-term at a loss $P<AC$ so long as $P>AVC$, the sale of each additional unit helps defray fixed costs. In the long run, these fixed costs are avoidable (``variable'') by the firm going out of business unless $P>AC$. The \textbf{shutdown point} where the firm will immediately cease operations would be $P< AVC$.
 
-
-
-\iffalse
 \section{Market Failures: Monopoly}
+In \textbf{imperfect competition}, there is some distortion to the conditions of perfect competition. In a \textbf{monopoly}, we have a single seller due to \textit{barriers to entry} such as
+\begin{itemize}
+	\item patents (though protection varies internationally)
+	\item government licensure
+	\item high cost of entry (fixed costs)
+	\item control of some limited resource
+	\item location monopoly (control over a market in a given area)
+	\item network externalities
+	\item mergers \& acquisitions
+\end{itemize}
+the \textbf{cartel} is a special case where multiple firms act monopolistically.
+
+The demand curve for the industry ($P=A-BQ$) is the demand curve for the firm (which is the entire industry), and so it possesses market (pricing) power. Assuming no price discrimination,
+\begin{align*}
+	TR=PQ=&(A-BQ)Q\\
+	MR=\dv{TR}{Q} =& A - 2BQ
+\end{align*}
+and so the marginal revenue has double the slope of the demand curve. To maximize profit, the monopolist will aim for $MC=MR$ at the point $(Q_m,P_m)$, as opposed to $P=MC$ at $(Q_c,P_c)$. Monopolists restrict supply ($Q_c>Q_m$) and increase price $(P_c=MC<P_m)$. The consumer surplus shrinks from
+$\int_0^{Q_c} \qty(D(Q) - P_c)\,dQ > \int_0^{Q_m} \qty(D(Q) - P_m)\,dQ$.
+The producer surplus shifts from
+$\int_0^{Q_c} \qty(P_c - MC(Q))\,dQ$ to $\int_0^{Q_m} \qty(P_m - MC(Q)) \,dQ$. Total societal surplus shrinks (there is a dead-weight loss from not producing items that were demanded for more than they would cost society), and what is left is redistributed to the producer.\footnote{A subjective value judgment needs to be made with regard to whether such a redistribution may or may not be good. Antitrust law is meant to combat the excesses when consumers suffer too much.}
+
 \section{Factor Markets}
+There are four main categories of factors:
+\begin{outline}
+	\term{Land} natural resources (e.g. farmland, oil, and water)
+	\termbB{Rent} is the income it earns.
+	\term{Labor} human time, effort, and skills
+	\termbB{Wages} is the income it earns
+	\term{(Physical) Capital} physical tools, machines, and buildings
+	\termbB{Interest} is the income it earns
+	\term{Entrepreneurship} the organization of the other factors (bearing the risk of an enterprise)
+	\termbB{Profit} is the income it earns
+\end{outline}
+
+In general, factor markets experience \textbf{derived demand}, the firms hire workers because the consumers want the goods the firms (with workers) can produce. Considering the relationship between the number of workers $Q_L$ and total output $O$, we have
+\begin{outline}
+    \termb{Marginal Product (MP)} = $\dv{O}{Q_L}$
+	\termb{Value of Marginal Product (VMP)} $= P\cdot MP$
+	\termb{Marginal Revenue Product (MRP)} $= MR\cdot MP$
+\end{outline}
+A firm will hire when $D=MRP\ge P_L$ (the wage).
+
+At labor market equilibrium, an increase in demand (e.g. workers become more productive)  drives up both wages and number of workers.
+
+A \textbf{monopsony} is the case where a single \textit{buyer} controls \textit{demand}, and if they are acting rationally, they will drive costs/wages down.
+
 \section{Market Failures: Imperfect Competition II}
 \section{Market Failures: Externalities \& Public Goods}
 \section{Strategic Behavior/Game Theory}
 \section{International Trade}
+\iffalse
 \section{Microeconomics in Action}
 \section{Intro to Macro/GDP Accounting/Immigration}
 \section{Employment and Inflation/Macro History}
