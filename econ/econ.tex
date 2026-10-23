@@ -410,6 +410,30 @@ $\int_0^{Q_c} \qty(D(Q) - P_c)\,dQ > \int_0^{Q_m} \qty(D(Q) - P_m)\,dQ$.
 The producer surplus shifts from
 $\int_0^{Q_c} \qty(P_c - MC(Q))\,dQ$ to $\int_0^{Q_m} \qty(P_m - MC(Q)) \,dQ$. Total societal surplus shrinks (there is a dead-weight loss from not producing items that were demanded for more than they would cost society), and what is left is redistributed to the producer.\footnote{A subjective value judgment needs to be made with regard to whether such a redistribution may or may not be good. Antitrust law is meant to combat the excesses when consumers suffer too much.}
 
+A \textbf{natural monopoly} occurs when there are high fixed costs and startup costs. Considering that $AC=AFC+AVC$, as the company scales, $AFC$ declines and $AVC$ grows. $AC$ will still be declining when it intersects $D$. If the monopoly were broke up, the resulting firms would have higher $AC$ and be generally inefficient. Thus, regulation may force the natural monopoly into
+\begin{itemize}
+    \item \textbf{marginal cost pricing}, but since $P_{MCP}=MC<AC$, a subsidy for the firm would be necessary.
+    \item \textbf{average cost pricing}, where $P=AC$ and the firm breaks even without subsidy.
+\end{itemize}
+whereupon the firm must petition the government for permission to change prices.
+
+\subsection{Price Discrimination}
+The act of price discrimination is giving consumers different prices based on some quality. This requires
+
+\begin{itemize}
+	\item market (pricing) power, as otherwise the firm is would lose customers at higher prices or lose revenue at lower prices\footnote{In perfect competition, we assume the firm can sell all it wants at market rate.}.
+	\item market segmentation, such that there is no resale (which would enable consumers to engage in \textbf{arbitrage}, pushing different prices to a convergent value in between)
+\end{itemize}
+
+The different degrees of price discrimination are commonly denoted first, second, and third:
+\begin{enumerate}
+	\item Every buyer pays exactly the price they are willing to pay (as in a well-run auction).
+	\item Quantity discounts
+	\item Other factors (time, age, etc.)
+\end{enumerate}
+First-degree price discrimination is also known as \textbf{perfect price discrimination}. In such a case, we there is no uniform $P$, but the final $P=MC$. Consumer surplus is $0$, with it all going to the producers.
+
+Higher degree price discrimination depends on the assumption that there are \textit{varying demand elasticities}.
 \section{Factor Markets}
 There are four main categories of factors:
 \begin{outline}
@@ -436,8 +460,20 @@ At labor market equilibrium, an increase in demand (e.g. workers become more pro
 A \textbf{monopsony} is the case where a single \textit{buyer} controls \textit{demand}, and if they are acting rationally, they will drive costs/wages down.
 
 \section{Market Failures: Imperfect Competition II}
+\subsection{Oligopoly}
+An oligopoly is when there are a small number of firms. There exist some barriers to entry, which leads to an \textit{interdependence of actions} between firms. The firms are no longer purely price takers/makers. The study of \textbf{game theory} (see section \ref{sec:gt}) focuses on the optimal strategy in relation to the opposing agents.
+
+Within an oligopoly like the flight market, Paul Sweezy's \textbf{kinked demand curve model} of oligopolies suggests that opposing firms will follow price cuts, but not price hikes. The assumption is that demand is inelastic for lower prices, but elastic at the higher prices. Thus, there is a \textit{stability} for these prices.
+
+A \textbf{concentration ratio} seeks to consider how concentrated an industry is. In this course, we either use a linear 4-firm concentration ratio (adding up the percent market shares of the top 4 firms), or a \textbf{Herfindahl-Hirschmann Index} (as used by the FTC), which sums the squares of the market shares. A monopoly would have an HHI of $10000 = 100^2$, in perfect competition the HHI would be small.
+
+\subsection{Monopolistic Competition}
+In a market with abundant buyers and sellers (few barriers to entry), monopolistic competition occurs due to \textbf{product differentiation} -- an individual firm has some agency with regard to their pricing due to factors like brand loyalty.
+
+In the long-run, the introduction of similar competitors will cause $D$ to fall until its intersection with $MC$ is at the tangent to the $ATC$ curve, profits tending to $0$. This has a dead-weight loss, since $P<MC$ in this case. We are not at the minimum efficient scale, but it gives us choices of product. This leads to the use of \textit{advertising} to try and drive a single firm's demand curve up (making short-run profit possible).
+
+\section{Strategic Behavior/Game Theory} \label{sec:gt}
 \section{Market Failures: Externalities \& Public Goods}
-\section{Strategic Behavior/Game Theory}
 \section{International Trade}
 \iffalse
 \section{Microeconomics in Action}
