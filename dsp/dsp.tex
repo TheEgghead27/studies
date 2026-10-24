@@ -441,6 +441,21 @@ and since the complex exponentials integral from $-\pi$ to $\pi$ is $0$ unless $
 	    =& \sumkinfty x[k]\delta[n-k] = x[n]
 \end{align*}
 
+\subsubsection{Convergence of the DTFT}
+It can be shown that for all absolutely summable $x[n]$, the DTFT will converge to a finite value.
+\[
+\qty|X(e^\jw)|\le\sum_{m=-\infty}^\infty \qty|x[n]e^{-\jw n}| =\sum_{m=-\infty}^\infty \qty|x[n]|
+\]
+Further, for square-summable $x[n]$, the limit of the finite sum approximation $X_M(e^\jw)=\sum_{n=-M}^Mx[n]e^{-\jw n}$ will go to zero,
+\begin{align*}
+	\lim_{m\to\infty} \int_{-\pi}^\pi \qty|X(e^\jw) - X_m(e^\jw)|^2\,d\w = 0
+\end{align*}
+as the total (per-period) error energy between two finite sum approximations $X_L$ and $X_M$
+\[
+    \frac{1}{2\pi}\int_{-\pi}^\pi \qty[X_L(e^\jw) -X_M(e^\jw)]^2\,d\omega = \sum_{m<|n|\le L} \qty|x[n]|^2<\infty
+\]
+will go to zero (which would apply the same for $L,M\to\infty$). There may be some frequencies where error lingers at specific frequencies (in a narrow band) -- for the case of discontinuities this is known as the \textbf{Gibbs Phenomenon}.
+
 \subsection{Application: Transient Responses}
 For a complex exponential signal that we switch on at $n=0$
 \[
@@ -497,6 +512,12 @@ For instance, the \textit{ideal} lowpass filter (which ``smooths out'' signals) 
 where we define this system from $[-\pi,\pi]$ since the frequency response is $2\pi$-periodic.
 The highpass, bandpass, and bandstop systems can be defined analogously.
 
+Computing the iDTFT for the LP filter, we get
+\[
+    x[n] = \frac{1}{2\pi} \int_{-\w_0}^{\w_0} e^{\jw n}\, d\omega= \frac{\sin(\w_cn)}{\pi n}
+\]
+at $0$, we use the limiting value at $\frac{1}{\pi}$.
+
 \subsubsection{Example: Moving Average}
 Considering a causal moving-average of window $M_2+1$, there is
 \[
@@ -531,8 +552,61 @@ and then we consider that $1-e^{-\jw} = e^{-\frac{\jw}{2}}\left(e^\frac{\jw}{2}-
 and plotting the magnitude of this frequency response, we notice that it serves as an imperfect LP filter with a large low-frequency response, but also lobes at high frequency and phase shifts (that trend linear relative to frequency, jumping at sign changes). We can consider the filter to have a smoothing effect on the signal.
 
 \subsection{Properties of the DTFT}
+Some relevant properties of the DTFT include
+\[
+    x[n-n_d] \longleftrightarrow e^{-jw n_d}
+\]
+which we obtain through direct evaluation of the DTFT, and
+\[
+nx[n] \longleftrightarrow j\dv{X(e^\jw)}{\w}
+\]
+which we obtain by differentiating the DTFT and swapping the order of integration and differentiation.
+
+\subsection{Generalization of the DTFT}
+We extend the DTFT to be inclusive of periodic functions in the time domain, which resolve to non-finite $\delta$ functions in the frequency domain.
+\[
+    1 \longleftrightarrow 2\pi\sum_{r=-\infty}^\infty\delta(\omega + 2\pi r)
+\]
+\[
+    e^{j\w_0n} \longleftrightarrow 2\pi\sum_{r=-\infty}^\infty\delta(\omega - \w_0 + 2\pi r)
+\]
+The constant case can be considered a special case of general periodic exponentials. These can be applied trivially using linearity.
+
+\subsection{Symmetries of the DTFT}
+\subsubsection{Symmetry Definitions}
+If $\forall n, x[n] = x^*[-n]$, the signal is \textbf{conjugate symmetric}. These are functions that have \textit{even} real portion and \textit{odd} imaginary portion.
+
+If $\forall n, x[n]= -x^*[-n]$, the signal is \textbf{conjugate anti-symmetric}. These are functions that have \textit{odd} real portion and \textit{even} imaginary portion.
+
+We can decompose an arbitrary signal into its complex symmetric and antisymmetric portions like so:
+\begin{align*}
+	x_e[n] = \frac{1}{2}\qty(x[n]+x^*[-n])\\
+	x_o[n] = \frac{1}{2}\qty(x[n]-x^*[-n])
+\end{align*}
+
+\subsubsection{Symmetry Theorems}
+Direct evaluation of the DTFT on complex conjugates yields
+\begin{align*}
+    F\qty{x^*[n]} =& X^*(e^-\jw)\\
+    F\qty{x^*[-n]} =& X^*(e^\jw)\\
+\end{align*}
+and using these on the decompositions yields
+\begin{align*}
+	F\qty{x_e[n]} &= F\qty{\frac{1}{2}\qty(x[n] + x^*[n])} = \frac{1}{2}\qty[X(e^\jw) + X^*(e^\jw)] = \Re{X(e^\jw)}\\
+	F\qty{x_o[n]} &= F\qty{\frac{1}{2}\qty(x[n] - x^*[n])} = \frac{1}{2}\qty[X(e^\jw) - X^*(e^\jw)] = j \Im{X(e^\jw)}
+\end{align*}
+
+For real signals,
+\begin{align*}
+	x[n] &= x^*[n]\\
+	X(e^\jw) &= X^*(e^{-\jw})
+\end{align*}
+and so the DTFT of a real signal is conjugate-symmetric. Considering that $X(e^\jw) = \qty|X(e^\jw)|e^{j\phi(\w)}$, applying conjugate symmetry tells us that the phase is odd.
+
+Composing these properties tells us that a real and even signal will have a real and even DTFT, and that a real and odd signal will have an imaginary and odd DTFT.
+
 % 2026-10-19, not even on midterm lmao
-\subsection{Parseval's Theorem}
+\subsubsection{Parseval's Theorem}
 For finite energy sequences $x[n]$ and $y^*[n]$ (ensuring convergence)
 \begin{align*}
     \frac{1}{2\pi}\int_{-\pi}^\pi X(e^\jw)Y^*(e^\jw)\,d\omega &=
