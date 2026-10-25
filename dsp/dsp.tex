@@ -562,7 +562,9 @@ nx[n] \longleftrightarrow j\dv{X(e^\jw)}{\w}
 \]
 which we obtain by differentiating the DTFT and swapping the order of integration and differentiation.
 
-\subsection{Generalization of the DTFT}
+In addition, the linearity of the DTFT makes it possible for difference equations to be solved with algebraic manipulation, in analogy to the application of the Laplace Transform in circuit analysis.
+
+\subsubsection{Generalization of the DTFT}
 We extend the DTFT to be inclusive of periodic functions in the time domain, which resolve to non-finite $\delta$ functions in the frequency domain.
 \[
     1 \longleftrightarrow 2\pi\sum_{r=-\infty}^\infty\delta(\omega + 2\pi r)
@@ -572,7 +574,6 @@ We extend the DTFT to be inclusive of periodic functions in the time domain, whi
 \]
 The constant case can be considered a special case of general periodic exponentials. These can be applied trivially using linearity.
 
-\subsection{Symmetries of the DTFT}
 \subsubsection{Symmetry Definitions}
 If $\forall n, x[n] = x^*[-n]$, the signal is \textbf{conjugate symmetric}. These are functions that have \textit{even} real portion and \textit{odd} imaginary portion.
 
@@ -584,7 +585,7 @@ We can decompose an arbitrary signal into its complex symmetric and antisymmetri
 	x_o[n] = \frac{1}{2}\qty(x[n]-x^*[-n])
 \end{align*}
 
-\subsubsection{Symmetry Theorems}
+\subsubsection{Symmetries of the DTFT}
 Direct evaluation of the DTFT on complex conjugates yields
 \begin{align*}
     F\qty{x^*[n]} =& X^*(e^-\jw)\\
@@ -626,9 +627,30 @@ and in the specific case of $y^*[n]=x^*[n]$, we find that integrating the energy
 \[
     \sum_{k=-\infty}^\infty \qty|x[n]|^2 = \frac{1}{2\pi}\int_{-\pi}^\pi \qty|X(e^\jw)|^2\,d\w
 \]
-\iffalse
+
+\subsubsection{Convolution Theorem}
+If $y[n]=x[n]*h[n]$, then, using $m=n-k$
+\begin{align*}
+	Y(e^\jw) =& \sum_{n=-\infty}^\infty \qty(\sum_{k=-\infty}^\infty x[k]h[n-k])e^{-\jw n}\\
+	         =& \sum_{k=-\infty}^\infty \sum_{m=-\infty}^\infty x[k]h[m]e^{-\jw (m+k)}\\
+	         =& \sum_{k=-\infty}^\infty x[k]e^{-\jw k}  \sum_{m=-\infty}^\infty h[m]e^{-\jw m}\\
+			=& X(e^\jw)H(e^\jw)
+\end{align*}
+
+\subsubsection{Modulation (Windowing) Theorem}
+If $y[n] = x[n]w[n]$, then, assuming we can change the order of integration and summation
+\begin{align*}
+    Y(e^\jw) &= \sum_{n=-\infty}^\infty x[n] w[n] e^{-\jw n}\\
+             &= \sum_{n=-\infty}^\infty x[n] \qty(\frac{1}{2\pi}\int_{-\pi}^\pi W(e^{j\theta})e^{j\theta n}\,d\theta) e^{-\jw n}\\
+             &= \frac{1}{2\pi}\int_{-\pi}^\pi  W(e^{j\theta})\sum_{n=-\infty}^\infty x[n]e^{-j(\w-\theta) n} \,d\theta\\
+             &= \frac{1}{2\pi}\int_{-\pi}^\pi  W(e^{j\theta}) X(e^{j(\w - \theta)}) \,d\theta
+\end{align*}
+which corresponds with a CT convolution between the DTFTs.
 
 \section{Sampling, reconstruction, and rate conversion}
+
+\iffalse
+
 \section{The DFT and circular convolution}
 \section{FFTs, windows, and spectral leakage}
 \section{Short-time Fourier analysis}
