@@ -9,7 +9,6 @@ env:
   course: econ
 jobs:
   build_latex:
-    if: ${{ env.course }}
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
