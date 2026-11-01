@@ -21,7 +21,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const { owner, repo } = context.repo
-            await github.rest.git.deleteRef({ owner, repo, ref: '${{ env.course }}}' })
+            await github.rest.git.deleteRef({ owner, repo, ref: 'refs/tags/${{ env.course }}}' })
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
         with:
