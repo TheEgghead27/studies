@@ -16,12 +16,9 @@ jobs:
       # see https://github.com/digicatapult/vitalam-service-template/pull/5/changes
       - name: Delete latest release
         background: true
-        uses: actions/github-script@v9
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const { owner, repo } = context.repo
-            await github.rest.git.deleteRef({ owner, repo, ref: 'refs/tags/${{ env.course }}}' })
+        run: gh release delete ${{ env.course }} --cleanup-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
         with:
