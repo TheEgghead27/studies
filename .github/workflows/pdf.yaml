@@ -24,4 +24,4 @@ jobs:
           files: ${{ env.course }}.pdf
           prerelease: true
           tag_name: ${{ env.course }}
-          target_commitish: ${{ GITHUB_REF }}
+          target_commitish: ${{ github.ref }}
