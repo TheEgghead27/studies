@@ -6,7 +6,7 @@ on:
       - "!master"
   workflow_dispatch:
 env:
-  course: econ
+  course: dsp
 jobs:
   build_latex:
     runs-on: ubuntu-latest
