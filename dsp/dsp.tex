@@ -493,9 +493,9 @@ and then taking the complex conjugate of the frequency response,
 so the frequency response at opposite frequencies are complex conjugates.
 
 
-\subsubsection{Example: Ideal Delay}
-$y[n] = x[n-n_d]$ has \[
-    H(e^{j\omega}) = e^{j\omega n_d}
+\subsubsection{Example: Ideal Delay/Time Shift}
+$y[n] = \delta[n-n_d]$ has \[
+    H(e^{j\omega}) = e^{-j\omega n_d}
 \] so the magnitude is always $1$ and the phase shift is linear.
 
 \subsection{Frequency-Selective Filters}
